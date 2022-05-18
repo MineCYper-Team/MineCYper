@@ -5,9 +5,14 @@
 !*.*
 # Unignore all dirs
 !*/
+# Unignore Makefile
+!Makefile
 
 # VS-Code
 /.vscode
+
+# Build folder
+/build
 
 # Prerequisites
 *.d
