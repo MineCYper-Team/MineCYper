@@ -5,7 +5,7 @@
 
 void bloc(int bloc, char EmptyDefault, char BoatDefault, bool IsPlayer){ //print a bloc depending on its value
 	if(bloc > 0 && IsPlayer){
-		printf("\e[0;%dm%c\033[0m", 30+bloc, BoatDefault);	
+		printf("\e[0;%dm%c\033[0m", 30+bloc, BoatDefault);
 	}
 	else if(bloc >= 0){
 		if(EmptyDefault=='1'){
