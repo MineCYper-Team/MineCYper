@@ -1,51 +1,10 @@
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include<time.h>
-#include<stdbool.h>
-
-typedef struct{
-	bool Mine;
-	bool Flag;
-	bool Revealed;
-	char Symbol;
-	int color;
-} Square;
-
-int max_(int a, int b){ //take the greater of two
-	if(a>b){
-		return a;
-	}
-	return b;
-}
-
-int provideIntegerChoice(int minimum, int maximum, char RangeFailMessage[], char IntegerFailMessage[]){
-	int integer = minimum - 1;
-	int type;
-
-	while(integer<minimum || integer>maximum){
-		type = scanf("%d", &integer);
-
-		//Test if selection is an integer
-		if(type!=1 && type!=2){
-			printf(IntegerFailMessage);
-			while(getchar()!='\n');
-		}
-
-		//Test if selection is in the correct range
-		else if(integer<minimum || integer>maximum){
-			printf(RangeFailMessage);
-		}
-	}
-
-	return integer;
-}
+#include "demineur.h"
 
 int menu(){ //main menu of the game
 	int x=0;
 	int seed = rand();
 	srand(seed);
-	printf(" [1] Play\n [2] Credits\n [3] Exit\n\n\n");
+	printf(" [1] Play\n [2] High Score\n [3] Credits\n [4] Exit\n\n\n");
 	/*do{
 		fflush(stdin);
 		scanf("%c", &x);
@@ -69,6 +28,10 @@ int menu(){ //main menu of the game
 		return menu();
 	}
 	else if(x==2){
+		printf("WIP");
+		return menu();
+	}
+	else if(x==3){
 		printf("        ______      __  __   _          __     _______\n");					// ______      __  __   _          __     _______
 		printf("        | ___ \\     | | | | | |         | |   (_) ___ \\\n");			// | ___ \     | | | | | |         | |   (_) ___ \ .
 		printf("        | |_/ / __ _| |_| |_| | ___  ___| |__  _| |_/ /\n");				// | |_/ / __ _| |_| |_| | ___  ___| |__  _| |_/ /
@@ -92,7 +55,7 @@ int menu(){ //main menu of the game
 		printf("Oui je sais il est pas à jour je m'en occuperais plus tard\n\n\n")	//WIP
 		return menu();
 	}
-	else if(x==3){
+	else if(x==4){
 		return 0;
 	}
 }

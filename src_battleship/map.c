@@ -1,7 +1,4 @@
-#include<stdbool.h>
-#define DIM 10
-#define DEF_BOAT 20
-#define DEF_BOAT_TYPE 8
+#include "demineur.h"
 
 void bloc(int bloc, char EmptyDefault, char BoatDefault, bool IsPlayer){ //print a bloc depending on its value
 	if(bloc > 0 && IsPlayer){
