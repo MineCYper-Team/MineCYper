@@ -9,10 +9,10 @@ void bloc_print(Bloc bloc){ //print a bloc depending on what it is
 			printf("\033[31m*\033[0m"); //* in Red
 		}
 		else if(bloc.Value == -1){
-			printf("*")
+			printf("*");
 		}
 		else if(bloc.Value == 0){
-			printf("%d", bloc.Value)
+			printf("%d", bloc.Value);
 		}
 		else if(bloc.Value > 0 && bloc.Value < 4){
 			printf("\033[33m%d\033[0m", bloc.Value);	//Yellow
@@ -32,18 +32,29 @@ void bloc_print(Bloc bloc){ //print a bloc depending on what it is
 	}
 }
 
-void map_print_1p(int map[DIM][DIM], int score){ //print the map
-	printf("Score: %d\n \\ A B C D E F G H I J\n  \\___________________", score);
-	for(int value1 = 0; value1 < DIM; value1++){
-		if(value1<DIM-1){
-			printf("\n %d|", value1 + 1);
+void map_print(int size, Bloc map[size][size], int flags_left){ //print the map
+	printf("Flags left: %d\n \\ ", flags_left);
+	for(int i = 0; i<taille; i++){
+		printf("%c ", A+i);
+	}
+	printf("\n  \\");
+	for(int i = 0; i<taille; i++){
+		printf("__";
+	}
+	for(int i = 0; i<taille; i++){
+		if(i<10){
+			printf("\n %d| ", i+1);
 		}
 		else{
-			printf("\n%d|", value1 + 1);
+			printf("\n%d| ", i+1);
 		}
-		for(int value2 = 0; value2 < DIM; value2++){
-			bloc(map[value2][value1], ' ', '@', 1);
-			printf(" ");
+		for(int j = 0; i<taille; i++){
+			bloc_print(map[i][j]);
+			printf(" | ");
+		}
+		printf("\n----");
+		for(int j = 0; i<taille; i++){
+			printf("----");
 		}
 	}
 	printf("\n\n");
