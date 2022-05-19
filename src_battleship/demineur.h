@@ -5,8 +5,7 @@
 #include<stdbool.h>
 
 typedef struct{
-	bool Mine;
 	bool Flag;
 	bool Revealed;
-	char Symbol;
+	int Value; //negative if mine, else bloc's value
 } Bloc;

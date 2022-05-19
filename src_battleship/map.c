@@ -1,25 +1,34 @@
 #include "demineur.h"
 
-void bloc(int bloc, char EmptyDefault, char BoatDefault, bool IsPlayer){ //print a bloc depending on its value
-	if(bloc > 0 && IsPlayer){
-		printf("\e[0;%dm%c\033[0m", 30+bloc, BoatDefault);
+void bloc_print(Bloc bloc){ //print a bloc depending on what it is
+	if(bloc.Flag){
+		printf("?");
 	}
-	else if(bloc >= 0){
-		if(EmptyDefault=='1'){
-			printf("\u25A1");
+	else if(bloc.Revealed){
+		if(bloc.Value == -2){
+			printf("\033[31m*\033[0m"); //* in Red
 		}
-		else{
-			printf("%c", EmptyDefault);
+		else if(bloc.Value == -1){
+			printf("*")
+		}
+		else if(bloc.Value == 0){
+			printf("%d", bloc.Value)
+		}
+		else if(bloc.Value > 0 && bloc.Value < 4){
+			printf("\033[33m%d\033[0m", bloc.Value);	//Yellow
+		}
+		else if(bloc.Value > 3 && bloc.Value < 7){
+			printf("\033[31m%d\033[0m", bloc.Value);	//Red
+		}
+		else if(bloc.Value > 6 && bloc.Value < 9){
+			printf("\033[35m%d\033[0m", bloc.Value);	//Purple
+		}
+		else if(bloc.Value > 8){
+			printf("#");	//Error
 		}
 	}
-	else if(bloc == -1){
-		printf("O");
-	}
-	else if(bloc < -1 && IsPlayer){
-		printf("\e[0;%dmX\033[0m", 29-bloc);
-	}
-	else if(bloc < -1){
-		printf("X");
+	else{
+		printf(" ");
 	}
 }
 
