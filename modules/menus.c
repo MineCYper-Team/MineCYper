@@ -7,6 +7,7 @@
 #include"compiler.h"
 #include"design.h"
 #include"utilities.h"
+#include"menus.h" //Prevents a warning
 
 //This function simply show the difficulty selection menu.
 

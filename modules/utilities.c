@@ -12,7 +12,7 @@ int provideIntegerChoice(int minimum, int maximum, char RangeFailMessage[], char
 		//Test if selection is an integer
 		if(type!=1 && type!=2){
 			printf(IntegerFailMessage);
-			while(getchar()!='\n');
+			while(getchar()!='\n'); //This specific line prevents a glitch where scanf will be bypassed infinitely, softlocking the program.
 		}
 
 		//Test if selection is in the correct range

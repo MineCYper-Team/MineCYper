@@ -34,6 +34,3 @@ run : all
 # Release
 release : all clean
 run_release : release run
-
-# Joke
-please_compile_without_making_a_mess : release
