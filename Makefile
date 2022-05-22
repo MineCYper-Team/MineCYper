@@ -5,6 +5,10 @@ MODULES_FOLDER=modules/
 # Optional
 BUILD_FOLDER=
 
+# Release
+release : all clean
+run_release : release run
+
 # Compilation
 launcher.o :
 	@$(CC) -c launcher.c -o $(BUILD_FOLDER)launcher.o
@@ -30,7 +34,3 @@ clean :
 run : all
 	@echo "Running $(EXECUTABLE_NAME)"
 	@./$(EXECUTABLE_NAME)
-
-# Release
-release : all clean
-run_release : release run
