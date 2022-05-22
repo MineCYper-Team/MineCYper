@@ -1,0 +1,21 @@
+name: make-ubuntu
+
+on:
+  push:
+    branches: [ main, make-action ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build with make
+      run: make
+    - name: Upload assets to GitHub
+      uses: AButler/upload-release-assets@v2.0
+      with:
+        files: 'MineCYper;LICENSE'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
