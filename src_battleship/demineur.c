@@ -1,31 +1,30 @@
-#include"headers.h"
+#include "demineur.h"
 
-int menu(){
+int menu(){ //main menu of the game
 	int selection=0;
-
-	//Regenerates the seed everytime the menu is loaded.
 	int seed = rand();
 	srand(seed);
-
-	//Selection
-	printf(" [1] Jouer\n [2] High Scores\n [3] Crédits\n [4] Sortie\n\n\n");
-	selection = provideIntegerChoice(1, 3, "Please enter a value between 1 and 3", "Please enter a number");
-
+	printf(" [1] Play\n [2] High Score\n [3] Credits\n [4] Exit\n\n\n");
+	/*do{
+		fflush(stdin);
+		scanf("%c", &selection);
+	}while(selection<'1' || selection>'4');*/
+	selection = provideIntegerChoice(1, 4, "Please enter a value between 1 and 3", "Please enter a number");
 	switch (selection){
 	case 1:
 		printf(" [1] Normal\n [2] Hard\n [3] Custom\n [4] Back\n\n\n");
-		char y[100]={};
+		char selection_2[100]={};
 		do{
 			fflush(stdin);
-			scanf("%s", y);
-			if(y[0]=='s' && y[1]=='e' && y[2]=='e' && y[3]=='d'){
+			scanf("%s", selection_2);
+			if(selection_2[0]=='s' && selection_2[1]=='e' && selection_2[2]=='e' && selection_2[3]=='d'){
 				printf("Please enter the seed\n");
 				scanf("%d", &seed);
 				srand(seed);
 				printf("Seed: %d\n", seed);
 			}
-			//printf("Char 1: %c\nChar 2: %c\nChar 3: %c\nChar 4: %c\n", y[0], y[1], y[2], y[3]);
-		}while(y[0]<'1' || y[0]>'4');
+			//printf("Char 1: %c\nChar 2: %c\nChar 3: %c\nChar 4: %c\n", selection_2[0], selection_2[1], selection_2[2], selection_2[3]);
+		}while(selection_2[0]<'1' || selection_2[0]>'4');
 		printf("WIP");
 		return menu();
 		break;
@@ -54,29 +53,26 @@ int menu(){
 		printf("       | __| | __ \\ / ___|  \\ \\    / (_) | |__ _ _ ____| |\n");				// | __| | __ \ / ___|  \ \    / (_) | |__ _ _ ____| |
 		printf("       | _/  | |/ / \\ \\___   \\ \\/\\/ /| | | / _` | '_/ _` |\n");			// | _/  | |/ / \ \___   \ \/\/ /| | | / _` | '_/ _` |
 		printf("       \\_| O |___/O  \\___/O   \\_/\\_/ |_|_|_\\__,_|_| \\__,_|\n\n\n");	// \_| O |___/O  \___/O   \_/\_/ |_|_|_\__,_|_| \__,_|
-		
-		printf("Oui je sais il est pas à jour je m'en occuperais plus tard\n\n\n");	//WIP
-
+		printf("Oui je sais il est pas à jour je m'en occuperais plus tard\n\n\n")	//WIP
 		return menu();
 		break;
 	case 4:
 		return 0;
 		break;
 	default:
+		printf("Error: switch default");
+		return menu;
 		break;
-	}
 }
 
 int main(){
-	//Generates a random seed
 	srand(time(NULL));
-
-	//And "amplifies it", not really convinced this is useful
-	//But I don't want to fight with Eyal, so fine.
-	for(int i=0; i<20; i++){
+	for(int i=0; i<20; i++){ //make rand more chaotic
 		srand(rand());
 	}
-
+	char command[15];
+	strcpy(command, "chcp 65001");
+	system(command);
 	printf("     ______      __  __   _          __     _______\n");         // ______      __  __   _          __     _______    // ______      __  __   _         __     _______
 	printf("     | ___ \\     | | | | | |         | |   (_) ___ \\\n");      // | ___ \     | | | | | |         | |   (_) ___ \ . // | ___ \     | | | | | |        | |   (_) ___ \ .
 	printf("     | |_/ / __ _| |_| |_| | ___  ___| |__  _| |_/ /\n");        // | |_/ / __ _| |_| |_| | ___  ___| |__  _| |_/ /   // | |_/ / __ _| |_| |_| | _______| |__  _| |_/ /
@@ -84,6 +80,5 @@ int main(){
 	printf("     | |_/ / (_| | \\_| \\_| |  __/\\__ \\ | | | | |\n");        // | |_/ / (_| | \_| \_| |  __/\__ \ | | | | |       // | |_/ / (_| | \_| \_| |  __/__ \ | | | | |
 	printf("     \\____/ \\__,_|\\__|\\__|_|\\___\\/___/_| |_\\_\\_|\n\n\n");// \____/ \__,_|\__|\__|_|\___\/___/_| |_\_\_|       // \____/ \__,_|\__|\__|_|\___/___/_| |_\_\_|
 	printf("Oui je sais il est pas à jour je m'en occuperais plus tard\n\n\n");	//WIP
-
 	return menu();
 }

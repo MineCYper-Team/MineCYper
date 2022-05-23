@@ -1,0 +1,9 @@
+printf("\033[0m");			//Reset
+printf("\033[30m");			//Black
+printf("\033[31m");			//Red
+printf("\033[32m");			//Green
+printf("\033[33m");			//Yellow
+printf("\033[34m");			//Blue
+printf("\033[35m");			//Purple
+printf("\033[36m");			//Cyan
+printf("\033[37m");			//White

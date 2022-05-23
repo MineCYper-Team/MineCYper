@@ -1,15 +1,11 @@
-#include "headers.h"
+#include "demineur.h"
 
-int max(int a, int b){
-	/* if(a>b){
+int max_(int a, int b){ //take the greater of two
+	if(a>b){
 		return a;
 	}
-	return b; */
-
-	/* Optimized alternative found online. We must remember to be careful when we use if statements in function that are used repeatedly.*/
-	return a ^ ((a ^ b) & -(a < b));
+	return b;
 }
-
 
 int provideIntegerChoice(int minimum, int maximum, char RangeFailMessage[], char IntegerFailMessage[]){
 	int integer = minimum - 1;
