@@ -2,7 +2,7 @@
 #include<stdio.h> //for printf, scanf and getchar
 
 // Internal Dependencies
-#include"compiler.h"
+#include"headers.h"
 
 //This function is for coloring
 void color(int color){

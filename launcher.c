@@ -5,9 +5,7 @@
 #include<time.h> //for time
 
 //Internal Dependencies
-#include"modules/menus.h"
-#include"modules/design.h"
-#include"modules/compiler.h" //Only used to get the version
+#include"modules/headers.h"
 
 int main(){
 	printf("\nMineCYper v");
@@ -16,7 +14,7 @@ int main(){
 
 	//Easter egg
 	srand(time(NULL));
-	if (rand() % 101 > 60){
+	if (rand() % 101 > 80){
 		sleep(2);
 		color(4);printf("Jordan : ");color(0);
 		printf("Qu'est-ce qu'il y a, Eyal ?\n");

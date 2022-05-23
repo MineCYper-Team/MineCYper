@@ -4,10 +4,7 @@
 #include<stdlib.h> //for waiting for user input
 
 // Internal Dependencies
-#include"compiler.h"
-#include"design.h"
-#include"utilities.h"
-#include"menus.h" //Prevents a warning
+#include"headers.h"
 
 //This function simply show the difficulty selection menu.
 
