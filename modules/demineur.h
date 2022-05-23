@@ -9,3 +9,5 @@ typedef struct{
 	bool Revealed;
 	int Value; //negative if mine, else bloc's value
 } Bloc;
+
+int provideIntegerChoice(int minimum, int maximum, char RangeFailMessage[], char IntegerFailMessage[]);

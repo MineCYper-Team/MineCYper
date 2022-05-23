@@ -39,7 +39,7 @@ void map_print(int size, Bloc map[size][size], int flags_left){ //print the map
 	}
 	printf("\n  \\");
 	for(int i = 0; i<size; i++){
-		printf("__";
+		printf("__");
 	}
 	for(int i = 0; i<size; i++){
 		if(i<10){
@@ -53,7 +53,7 @@ void map_print(int size, Bloc map[size][size], int flags_left){ //print the map
 			printf(" | ");
 		}
 		printf("\n----");
-		for(int j = 0; i<taille; i++){
+		for(int j = 0; i<size; i++){
 			printf("----");
 		}
 	}

@@ -27,11 +27,11 @@ int menu(){ //main menu of the game
 			}
 			//printf("Char 1: %c\nChar 2: %c\nChar 3: %c\nChar 4: %c\n", selection_2[0], selection_2[1], selection_2[2], selection_2[3]);
 		}while(selection_2[0]<'1' || selection_2[0]>'4');
-		printf("WIP");
+		printf("WIP\n");
 		return menu();
 		break;
 	case 2:
-		printf("WIP");
+		printf("WIP\n");
 		return menu();
 		break;
 	case 3:
@@ -55,7 +55,7 @@ int menu(){ //main menu of the game
 		printf("       | __| | __ \\ / ___|  \\ \\    / (_) | |__ _ _ ____| |\n");				// | __| | __ \ / ___|  \ \    / (_) | |__ _ _ ____| |
 		printf("       | _/  | |/ / \\ \\___   \\ \\/\\/ /| | | / _` | '_/ _` |\n");			// | _/  | |/ / \ \___   \ \/\/ /| | | / _` | '_/ _` |
 		printf("       \\_| O |___/O  \\___/O   \\_/\\_/ |_|_|_\\__,_|_| \\__,_|\n\n\n");	// \_| O |___/O  \___/O   \_/\_/ |_|_|_\__,_|_| \__,_|
-		printf("Oui je sais il est pas à jour je m'en occuperais plus tard\n\n\n")	//WIP
+		printf("Oui je sais il est pas à jour je m'en occuperais plus tard\n\n\n");	//WIP
 		return menu();
 		break;
 	case 4:
@@ -63,8 +63,9 @@ int menu(){ //main menu of the game
 		break;
 	default:
 		printf("Error: switch default");
-		return menu;
+		return menu();
 		break;
+	}
 }
 
 int main(){

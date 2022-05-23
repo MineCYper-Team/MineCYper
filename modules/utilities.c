@@ -16,13 +16,13 @@ int provideIntegerChoice(int minimum, int maximum, char RangeFailMessage[], char
 
 		//Test if selection is an integer
 		if(type!=1 && type!=2){
-			printf(IntegerFailMessage);
+			printf("%s", IntegerFailMessage);
 			while(getchar()!='\n');
 		}
 
 		//Test if selection is in the correct range
 		else if(integer<minimum || integer>maximum){
-			printf(RangeFailMessage);
+			printf("%s", RangeFailMessage);
 		}
 	}
 
