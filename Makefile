@@ -6,8 +6,8 @@ MODULES_FOLDER=modules/
 BUILD_FOLDER=
 
 # Compilation
-menu.o :
-	@$(CC) -c $(MODULES_FOLDER)menu.c -o $(BUILD_FOLDER)menu.o
+demineur.o :
+	@$(CC) -c $(MODULES_FOLDER)demineur.c -o $(BUILD_FOLDER)demineur.o
 
 map.o :
 	@$(CC) -c $(MODULES_FOLDER)map.c -o $(BUILD_FOLDER)map.o
@@ -16,12 +16,12 @@ utilities.o :
 	@$(CC) -c $(MODULES_FOLDER)utilities.c -o $(BUILD_FOLDER)utilities.o
 
 # Everything at once (should be replaced with a wildcard)
-all : menu.o map.o utilities.o
-	@$(CC) $(BUILD_FOLDER)menu.o $(BUILD_FOLDER)map.o $(BUILD_FOLDER)utilities.o -o $(EXECUTABLE_NAME)
+all : demineur.o map.o utilities.o
+	@$(CC) $(BUILD_FOLDER)demineur.o $(BUILD_FOLDER)map.o $(BUILD_FOLDER)utilities.o -o $(EXECUTABLE_NAME)
 
 # Cleaner (should be replaced with a wildcard)
 clean :
-	@rm -f $(BUILD_FOLDER)menu.o $(BUILD_FOLDER)map.o $(BUILD_FOLDER)utilities.o
+	@rm -f $(BUILD_FOLDER)demineur.o $(BUILD_FOLDER)map.o $(BUILD_FOLDER)utilities.o
 
 # Runners
 run : all
