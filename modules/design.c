@@ -1,5 +1,6 @@
 // External Dependencies
 #include<stdio.h> //for printf, scanf and getchar
+#include<string.h>
 
 // Internal Dependencies
 #include"headers.h"
@@ -35,6 +36,12 @@ void color(int color){
 		printf("\033[37m");			//White
 		break;
 	}
+}
+
+void coloredText(char * Text, int Color){
+	color(Color);
+	printf("%s", Text);
+	color(0);
 }
 
 //Allows us to easily make titles in menus

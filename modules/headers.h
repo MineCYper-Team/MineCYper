@@ -6,13 +6,17 @@
 #define SPACE "\n         "
 #define TUTORIAL_WAIT_TIME 2
 
+//game.c
+void beginGame(int width, int height, int number_of_mines);
+
 //menus.c
 void showDifficultySelectionMenu();
 void showTutorial();
 int showMainMenu();
 
 //design.c
-void color(int color);
+void color(int Color);
+void coloredText(char * Text, int Color);
 void makeTitle(char * Title, int Color);
 
 //utilities.c

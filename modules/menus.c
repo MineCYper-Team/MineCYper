@@ -25,13 +25,13 @@ void showDifficultySelectionMenu(){
 
 	switch (selection_difficulte){
 	case 1:
-		//beginGame(9, 9, 10);
+		beginGame(9, 9, 10);
 		break;
 	case 2:
-		//beginGame(16, 16, 40);
+		beginGame(16, 16, 40);
 		break;
 	case 3:
-		//beginGame(30, 16, 99);
+		beginGame(30, 16, 99);
 		break;
 	case 4:
 		//showConfigMenu();
@@ -95,4 +95,6 @@ int showMainMenu(){
 		printf("\n");
 		return 0;
 	}
+
+	showMainMenu();
 }
