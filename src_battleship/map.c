@@ -34,21 +34,21 @@ void bloc_print(Bloc bloc){ //print a bloc depending on what it is
 
 void map_print(int size, Bloc map[size][size], int flags_left){ //print the map
 	printf("Flags left: %d\n \\ ", flags_left);
-	for(int i = 0; i<taille; i++){
-		printf("%c ", A+i);
+	for(int i = 0; i<size; i++){
+		printf("%c ", 'A'+i);
 	}
 	printf("\n  \\");
-	for(int i = 0; i<taille; i++){
+	for(int i = 0; i<size; i++){
 		printf("__";
 	}
-	for(int i = 0; i<taille; i++){
+	for(int i = 0; i<size; i++){
 		if(i<10){
 			printf("\n %d| ", i+1);
 		}
 		else{
 			printf("\n%d| ", i+1);
 		}
-		for(int j = 0; i<taille; i++){
+		for(int j = 0; i<size; i++){
 			bloc_print(map[i][j]);
 			printf(" | ");
 		}

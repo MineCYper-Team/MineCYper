@@ -2,29 +2,26 @@ CC=gcc
 EXECUTABLE_NAME=MineCYper
 MODULES_FOLDER=modules/
 
-# Optional
+# Optional (use root if empty)
 BUILD_FOLDER=
 
 # Compilation
-launcher.o :
-	@$(CC) -c launcher.c -o $(BUILD_FOLDER)launcher.o
+menu.o :
+	@$(CC) -c $(MODULES_FOLDER)menu.c -o $(BUILD_FOLDER)menu.o
 
-menus.o :
-	@$(CC) -c $(MODULES_FOLDER)menus.c -o $(BUILD_FOLDER)menus.o
+map.o :
+	@$(CC) -c $(MODULES_FOLDER)map.c -o $(BUILD_FOLDER)map.o
 
 utilities.o :
 	@$(CC) -c $(MODULES_FOLDER)utilities.c -o $(BUILD_FOLDER)utilities.o
 
-design.o :
-	@$(CC) -c $(MODULES_FOLDER)design.c -o $(BUILD_FOLDER)design.o
-
 # Everything at once (should be replaced with a wildcard)
-all : launcher.o menus.o utilities.o design.o
-	@$(CC) $(BUILD_FOLDER)launcher.o $(BUILD_FOLDER)menus.o $(BUILD_FOLDER)utilities.o $(BUILD_FOLDER)design.o -o $(EXECUTABLE_NAME)
+all : menu.o map.o utilities.o
+	@$(CC) $(BUILD_FOLDER)menu.o $(BUILD_FOLDER)map.o $(BUILD_FOLDER)utilities.o -o $(EXECUTABLE_NAME)
 
 # Cleaner (should be replaced with a wildcard)
 clean :
-	@rm -f $(BUILD_FOLDER)launcher.o $(BUILD_FOLDER)menus.o $(BUILD_FOLDER)utilities.o $(BUILD_FOLDER)design.o
+	@rm -f $(BUILD_FOLDER)menu.o $(BUILD_FOLDER)map.o $(BUILD_FOLDER)utilities.o
 
 # Runners
 run : all
@@ -34,6 +31,3 @@ run : all
 # Release
 release : all clean
 run_release : release run
-
-# Joke
-please_compile_without_making_a_mess : release
