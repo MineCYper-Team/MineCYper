@@ -1,7 +1,16 @@
-//External Dependencies
-#include<stdio.h> //for printf, scanf and getchar
+#include "headers.h"
 
-//This function is a "wrapper" for scanf basically, it replaces integer scanf calls in other functions in order to prevent the user breaking the program.
+int max(int a, int b){
+	/* if(a>b){
+		return a;
+	}
+	return b; */
+
+	/* Optimized alternative found online. We must remember to be careful when we use if statements in function that are used repeatedly.*/
+	return a ^ ((a ^ b) & -(a < b));
+}
+
+
 int provideIntegerChoice(int minimum, int maximum, char RangeFailMessage[], char IntegerFailMessage[]){
 	int integer = minimum - 1;
 	int type;
