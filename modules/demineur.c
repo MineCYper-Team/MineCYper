@@ -2,8 +2,10 @@
 
 int menu(){ //main menu of the game
 	int selection=0;
+	//Regenerates the seed everytime the menu is loaded.
 	int seed = rand();
 	srand(seed);
+	//Selection
 	printf(" [1] Play\n [2] High Score\n [3] Credits\n [4] Exit\n\n\n");
 	/*do{
 		fflush(stdin);
@@ -66,6 +68,7 @@ int menu(){ //main menu of the game
 }
 
 int main(){
+	//Generates a random seed
 	srand(time(NULL));
 	for(int i=0; i<20; i++){ //make rand more chaotic
 		srand(rand());
