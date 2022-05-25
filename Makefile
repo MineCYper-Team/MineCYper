@@ -9,22 +9,22 @@ release : all clean
 run_release : release run
 
 # Compilation
-demineur.o :
-	@$(CC) -c modules/demineur.c -o $(BUILD_FOLDER)demineur.o
+minesweeper.o :
+	@$(CC) -c modules/minesweeper.c -o $(BUILD_FOLDER)minesweeper.o
 
-map.o :
-	@$(CC) -c modules/map.c -o $(BUILD_FOLDER)map.o
+grid.o :
+	@$(CC) -c modules/grid.c -o $(BUILD_FOLDER)grid.o
 
 utilities.o :
 	@$(CC) -c modules/utilities.c -o $(BUILD_FOLDER)utilities.o
 
 # Everything at once (should be replaced with a wildcard)
-all : demineur.o map.o utilities.o
-	@$(CC) $(BUILD_FOLDER)demineur.o $(BUILD_FOLDER)map.o $(BUILD_FOLDER)utilities.o -o $(EXECUTABLE_NAME)
+all : minesweeper.o grid.o utilities.o
+	@$(CC) $(BUILD_FOLDER)minesweeper.o $(BUILD_FOLDER)grid.o $(BUILD_FOLDER)utilities.o -o $(EXECUTABLE_NAME)
 
 # Cleaner (should be replaced with a wildcard)
 clean :
-	@rm -f $(BUILD_FOLDER)demineur.o $(BUILD_FOLDER)map.o $(BUILD_FOLDER)utilities.o
+	@rm -f $(BUILD_FOLDER)minesweeper.o $(BUILD_FOLDER)grid.o $(BUILD_FOLDER)utilities.o
 
 # Runners
 run : all

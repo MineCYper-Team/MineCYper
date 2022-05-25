@@ -1,4 +1,4 @@
-#include "demineur.h"
+#include "headers.h"
 
 int max_(int a, int b){ //take the greater of two
 	if(a>b){

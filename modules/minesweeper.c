@@ -1,4 +1,4 @@
-#include "demineur.h"
+#include "headers.h"
 
 int menu(){ //main menu of the game
 	int selection=0;
