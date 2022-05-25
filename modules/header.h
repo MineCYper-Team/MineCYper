@@ -4,6 +4,8 @@
 #include<time.h>
 #include<stdbool.h>
 
+#define RELEASE_VERSION "1.0-dev"
+
 typedef struct{
 	bool Flag;
 	bool Revealed;
@@ -11,3 +13,5 @@ typedef struct{
 } Bloc;
 
 int provideIntegerChoice(int minimum, int maximum, char RangeFailMessage[], char IntegerFailMessage[]);
+void color(int color);
+void coloredText(char * Text, int Color);

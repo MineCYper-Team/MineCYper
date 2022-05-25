@@ -1,4 +1,4 @@
-#include "headers.h"
+#include "header.h"
 
 int menu(){ //main menu of the game
 	int selection=0;
