@@ -8,13 +8,12 @@ int showMainMenu(){ //main menu of the game
 	srand(seed);
 
 	//Selection
-	printf(" [1] Play\n [2] High Score\n [3] Credits\n [4] Exit\n\nPlease enter a selection : ");
-	selection = provideIntegerChoice(1, 4, "Please enter a value between 1 and 3 : ", "Please enter a number : ");
+	printf(" [1] Play\n [2] High Score\n [3] Credits\n [4] Exit\n\n\n");
+	selection = provideIntegerChoice(1, 4, "Please enter a value between 1 and 4 : ", "Please enter a number : ");
 
 	switch (selection){
 	case 1:
-		colorPrintf("\nChoose your difficultyx :\n",RED);
-		printf(" [1] Normal\n [2] Hard\n [3] Custom\n [4] Back\n\nPlease enter a selection : ");
+		printf(" [1] Normal\n [2] Hard\n [3] Custom\n [4] Back\n\n\n");
 		char selection_2[100]={};
 		do{
 			while(getchar()!='\n'); //flush
@@ -62,7 +61,7 @@ int showMainMenu(){ //main menu of the game
 		return showMainMenu();
 		break;
 	case 4:
-		colorPrintf("\nSee you soon !\n",GREEN);
+		colorPrintf("\nGoodbye\n",GREEN);
 		return 0;
 		break;
 	default:
@@ -78,14 +77,14 @@ int main(){
 	for(int i=0; i<20; i++){ //make rand more chaotic
 		srand(rand());
 	}
-	
+
 	//Windows compatibility
 	#if defined(_WIN32) || defined(_CYGWIN)
 	char command[15];
 	strcpy(command, "chcp 65001");
 	system(command);
 	#endif
-	
+
 	//Insert new logo here
 	printf("\n\n\n");
 

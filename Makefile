@@ -12,19 +12,19 @@ run_release : release run
 minesweeper.o :
 	@$(CC) -c modules/minesweeper.c -o $(BUILD_FOLDER)minesweeper.o
 
-grid.o :
-	@$(CC) -c modules/grid.c -o $(BUILD_FOLDER)grid.o
+map.o :
+	@$(CC) -c modules/map.c -o $(BUILD_FOLDER)map.o
 
 utilities.o :
 	@$(CC) -c modules/utilities.c -o $(BUILD_FOLDER)utilities.o
 
 # Everything at once (should be replaced with a wildcard)
-all : minesweeper.o grid.o utilities.o
-	@$(CC) $(BUILD_FOLDER)minesweeper.o $(BUILD_FOLDER)grid.o $(BUILD_FOLDER)utilities.o -o $(EXECUTABLE_NAME)
+all : minesweeper.o map.o utilities.o
+	@$(CC) $(BUILD_FOLDER)minesweeper.o $(BUILD_FOLDER)map.o $(BUILD_FOLDER)utilities.o -o $(EXECUTABLE_NAME)
 
 # Cleaner (should be replaced with a wildcard)
 clean :
-	@rm -f $(BUILD_FOLDER)minesweeper.o $(BUILD_FOLDER)grid.o $(BUILD_FOLDER)utilities.o
+	@rm -f $(BUILD_FOLDER)minesweeper.o $(BUILD_FOLDER)map.o $(BUILD_FOLDER)utilities.o
 
 # Runners
 run : all
