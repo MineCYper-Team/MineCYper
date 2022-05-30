@@ -1,20 +1,20 @@
 #include "header.h"
 
-int menu(){ //main menu of the game
+int showMainMenu(){ //main menu of the game
 	int selection=0;
+
 	//Regenerates the seed everytime the menu is loaded.
 	int seed = rand();
 	srand(seed);
+
 	//Selection
-	printf(" [1] Play\n [2] High Score\n [3] Credits\n [4] Exit\n\n\n");
-	/*do{
-		fflush(stdin);
-		scanf("%c", &selection);
-	}while(selection<'1' || selection>'4');*/
-	selection = provideIntegerChoice(1, 4, "Please enter a value between 1 and 3", "Please enter a number");
+	printf(" [1] Play\n [2] High Score\n [3] Credits\n [4] Exit\n\nPlease enter a selection : ");
+	selection = provideIntegerChoice(1, 4, "Please enter a value between 1 and 3 : ", "Please enter a number : ");
+
 	switch (selection){
 	case 1:
-		printf(" [1] Normal\n [2] Hard\n [3] Custom\n [4] Back\n\n\n");
+		colorPrintf("\nChoose your difficultyx :\n",RED);
+		printf(" [1] Normal\n [2] Hard\n [3] Custom\n [4] Back\n\nPlease enter a selection : ");
 		char selection_2[100]={};
 		do{
 			while(getchar()!='\n'); //flush
@@ -23,16 +23,18 @@ int menu(){ //main menu of the game
 				printf("Please enter the seed\n");
 				scanf("%d", &seed);
 				srand(seed);
-				printf("Seed: %d\n", seed);
+				printf("Seed : %d\n", seed);
 			}
 			//printf("Char 1: %c\nChar 2: %c\nChar 3: %c\nChar 4: %c\n", selection_2[0], selection_2[1], selection_2[2], selection_2[3]);
 		}while(selection_2[0]<'1' || selection_2[0]>'4');
 		printf("WIP\n");
-		return menu();
+
+		return showMainMenu();
 		break;
 	case 2:
 		printf("WIP\n");
-		return menu();
+
+		return showMainMenu();
 		break;
 	case 3:
 		printf("        ______      __  __   _          __     _______\n");					// ______      __  __   _          __     _______
@@ -56,14 +58,16 @@ int menu(){ //main menu of the game
 		printf("       | _/  | |/ / \\ \\___   \\ \\/\\/ /| | | / _` | '_/ _` |\n");			// | _/  | |/ / \ \___   \ \/\/ /| | | / _` | '_/ _` |
 		printf("       \\_| O |___/O  \\___/O   \\_/\\_/ |_|_|_\\__,_|_| \\__,_|\n\n\n");	// \_| O |___/O  \___/O   \_/\_/ |_|_|_\__,_|_| \__,_|
 		printf("Oui je sais il est pas à jour je m'en occuperais plus tard\n\n");	//WIP
-		return menu();
+
+		return showMainMenu();
 		break;
 	case 4:
+		colorPrintf("\nSee you soon !\n",GREEN);
 		return 0;
 		break;
 	default:
-		printf("Error: switch default");
-		return menu();
+		colorPrintf("Error : This shouldn't happen. Going back to the menu.\n\n",RED);
+		return showMainMenu();
 		break;
 	}
 }
@@ -74,15 +78,16 @@ int main(){
 	for(int i=0; i<20; i++){ //make rand more chaotic
 		srand(rand());
 	}
+	
+	//Windows compatibility
+	#if defined(_WIN32) || defined(_CYGWIN)
 	char command[15];
 	strcpy(command, "chcp 65001");
 	system(command);
-	printf("     ______      __  __   _          __     _______\n");         // ______      __  __   _          __     _______    // ______      __  __   _         __     _______
-	printf("     | ___ \\     | | | | | |         | |   (_) ___ \\\n");      // | ___ \     | | | | | |         | |   (_) ___ \ . // | ___ \     | | | | | |        | |   (_) ___ \ .
-	printf("     | |_/ / __ _| |_| |_| | ___  ___| |__  _| |_/ /\n");        // | |_/ / __ _| |_| |_| | ___  ___| |__  _| |_/ /   // | |_/ / __ _| |_| |_| | _______| |__  _| |_/ /
-	printf("     | ___ \\/ _` | __| __| |/ _ \\/ __| '_ \\| |  __/\n");      // | ___ \/ _` | __| __| |/ _ \/ __| '_ \| |  __/    // | ___ \/ _` | __| __| |/ _ \ __| '_ \| |  __/
-	printf("     | |_/ / (_| | \\_| \\_| |  __/\\__ \\ | | | | |\n");        // | |_/ / (_| | \_| \_| |  __/\__ \ | | | | |       // | |_/ / (_| | \_| \_| |  __/__ \ | | | | |
-	printf("     \\____/ \\__,_|\\__|\\__|_|\\___\\/___/_| |_\\_\\_|\n\n\n");// \____/ \__,_|\__|\__|_|\___\/___/_| |_\_\_|       // \____/ \__,_|\__|\__|_|\___/___/_| |_\_\_|
-	printf("Oui je sais il est pas à jour je m'en occuperais plus tard\n\n\n");	//WIP
-	return menu();
+	#endif
+	
+	//Insert new logo here
+	printf("\n\n\n");
+
+	return showMainMenu();
 }
