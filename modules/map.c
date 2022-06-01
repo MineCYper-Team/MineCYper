@@ -6,7 +6,7 @@ void bloc_print(Bloc bloc){ //print a bloc depending on what it is
 	}
 	else if(bloc.Revealed){
 		if(bloc.Value == -2){
-			printf("\033[31m*\033[0m"); //* in Red
+			colorPrintf("*",RED);
 		}
 		else if(bloc.Value == -1){
 			printf("*");
@@ -15,13 +15,13 @@ void bloc_print(Bloc bloc){ //print a bloc depending on what it is
 			printf("%d", bloc.Value);
 		}
 		else if(bloc.Value > 0 && bloc.Value < 4){
-			printf("\033[33m%d\033[0m", bloc.Value);	//Yellow
+			printf("\033[%dm%d\033[%dm", YELLOW, bloc.Value, RESET_COLOR);	//Yellow
 		}
 		else if(bloc.Value > 3 && bloc.Value < 7){
-			printf("\033[31m%d\033[0m", bloc.Value);	//Red
+			printf("\033[%dm%d\033[%dm", RED, bloc.Value, RESET_COLOR);	//Red
 		}
 		else if(bloc.Value > 6 && bloc.Value < 9){
-			printf("\033[35m%d\033[0m", bloc.Value);	//Purple
+			printf("\033[%dm%d\033[%dm", PURPLE, bloc.Value, RESET_COLOR);	//Purple
 		}
 		else if(bloc.Value > 8){
 			printf("#");	//Error

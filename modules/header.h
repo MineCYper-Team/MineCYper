@@ -6,15 +6,16 @@
 
 #define RELEASE_VERSION "1.0-dev"
 
-#define RESET_COLOR "\033[0m"
-#define BLACK "\033[30m"
-#define RED "\033[31m"
-#define GREEN "\033[32m"
-#define YELLOW "\033[33m"
-#define BLUE "\033[34m"
-#define PURPLE "\033[35m"
-#define CYAN "\033[36m"
-#define WHITE "\033[37m"
+//#define RESET_COLOR "\033[0m"
+#define RESET_COLOR 0
+#define BLACK 30
+#define RED 31
+#define GREEN 32
+#define YELLOW 33
+#define BLUE 34
+#define PURPLE 35
+#define CYAN 36
+#define WHITE 37
 
 typedef struct{
 	bool Flag;
@@ -23,4 +24,4 @@ typedef struct{
 } Bloc;
 
 int provideIntegerChoice(int minimum, int maximum, char RangeFailMessage[], char IntegerFailMessage[]);
-void colorPrintf(char * Text, char * Color);
+void colorPrintf(char * Text, int Color);

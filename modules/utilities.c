@@ -30,8 +30,9 @@ int provideIntegerChoice(int minimum, int maximum, char RangeFailMessage[], char
 }
 
 //Colored Text
-void colorPrintf(char * Text, char * Color){
-	printf(Color);
+void colorPrintf(char * Text, int Color){
+	printf("\033[%dm%s\033[0m", Color, Text);
+	/*printf("\033[%dm", Color);
 	printf("%s", Text);
-	printf("\033[0m");
+	printf("\033[0m");*/
 }
