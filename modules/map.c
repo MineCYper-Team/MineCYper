@@ -32,8 +32,9 @@ void bloc_print(Bloc bloc){ //print a bloc depending on what it is
 	}
 }
 
-void map_print(int length, int height, Bloc map[length][height], int flags_left){ //print the map
-	printf("Flags left: %d\n \\ ", flags_left);
+void map_print(int length, int height, Bloc map[length][height]){ //print the map
+	//printf("Flags left: %d\n", flags_left);
+	printf(" \\ ");
 	for(int i = 0; i<length; i++){
 		printf(" %c |", 'A'+i);
 	}

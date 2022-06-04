@@ -9,20 +9,20 @@ int showMainMenu(){ //main menu of the game
 
 	//Selection
 	printf(" [1] Play\n [2] High Score\n [3] Credits\n [4] Exit\n\n\n");
-	selection = provideIntegerChoice(1, 4, "Please enter a value between 1 and 4 :\n", "Please enter a number :\n");
+	selection = provideIntegerChoice(1, 4, "Please enter a value between 1 and 4\n", "Please enter a number\n");
 
 	switch (selection){
 	case 1:
-		printf(" [1] Normal\n [2] Hard\n [3] Custom\n [4] Back\n\n\n");
 		char selection_2[100]={};
 		do{
 			while(getchar()!='\n'); //flush
+			printf(" [1] Normal\n [2] Hard\n [3] Custom\n [4] Back\n\n\n");
 			scanf("%s", selection_2);
 			if(selection_2[0]=='s' && selection_2[1]=='e' && selection_2[2]=='e' && selection_2[3]=='d'){
 				printf("Please enter the seed\n");
 				scanf("%d", &seed);
 				srand(seed);
-				printf("Seed : %d\n", seed);
+				printf("Seed : %d\n\n", seed);
 			}
 			//printf("Char 1: %c\nChar 2: %c\nChar 3: %c\nChar 4: %c\n", selection_2[0], selection_2[1], selection_2[2], selection_2[3]);
 		}while(selection_2[0]<'1' || selection_2[0]>'4');
@@ -31,8 +31,8 @@ int showMainMenu(){ //main menu of the game
 		int mines;*/
 		int score;
 		int selection_3 = atoi(&selection_2[0]);
-		printf("selec 2: %c\n", selection_2[0]);
-		printf("selec 3: %d\n\n", selection_3);
+		//printf("selec 2: %c\n", selection_2[0]);
+		//printf("selec 3: %d\n\n", selection_3);
 		switch (selection_3){
 		case 1:
 			/*height = 9;
@@ -61,8 +61,6 @@ int showMainMenu(){ //main menu of the game
 			break;
 			//9x9 10; 16x16 40
 		}
-		Bloc map[16][16]={};
-		first_turn(16, 16, map, 40);
 		/*Bloc map[length][height]={};
 		map_print(length, height, map, mines);*/
 		return showMainMenu();
