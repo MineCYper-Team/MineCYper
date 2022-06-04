@@ -14,13 +14,22 @@ void bloc_print(Bloc bloc){ //print a bloc depending on what it is
 		else if(bloc.Value == 0){
 			printf("%d", bloc.Value);
 		}
-		else if(bloc.Value > 0 && bloc.Value < 4){
-			printf("\033[%dm%d\033[%dm", YELLOW, bloc.Value, RESET_COLOR);	//Yellow
+		else if(bloc.Value == 1){
+			printf("\033[%dm%d\033[%dm", BLUE, bloc.Value, RESET_COLOR);	//Yellow
 		}
-		else if(bloc.Value > 3 && bloc.Value < 7){
-			printf("\033[%dm%d\033[%dm", RED, bloc.Value, RESET_COLOR);	//Red
+		else if(bloc.Value == 2){
+			printf("\033[%dm%d\033[%dm", CYAN, bloc.Value, RESET_COLOR);	//Red
 		}
-		else if(bloc.Value > 6 && bloc.Value < 9){
+		else if(bloc.Value == 3){
+			printf("\033[%dm%d\033[%dm", GREEN, bloc.Value, RESET_COLOR);	//Red
+		}
+		else if(bloc.Value == 4){
+			printf("\033[%dm%d\033[%dm", YELLOW, bloc.Value, RESET_COLOR);	//Red
+		}
+		else if(bloc.Value == 5 || bloc.Value == 6){
+			printf("\033[%dm%d\033[%dm", RED, bloc.Value, RESET_COLOR);	//Purple
+		}
+		else if(bloc.Value == 7 || bloc.Value == 8){
 			printf("\033[%dm%d\033[%dm", PURPLE, bloc.Value, RESET_COLOR);	//Purple
 		}
 		else if(bloc.Value > 8){
