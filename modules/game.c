@@ -1,5 +1,7 @@
 #include "header.h"
 
+int * flag_pointer = NULL;
+
 bool winning(int length, int height, Bloc map[length][height]){
   for(int i=0; i<height; i++){
     for(int j=0; j<length; j++){
@@ -12,7 +14,6 @@ bool winning(int length, int height, Bloc map[length][height]){
 }
 
 int reveal_bloc(int length, int height, Bloc map[length][height], int abs, int ord, bool gameplay){
-  map[abs][ord].Flag = false;
   if(map[abs][ord].Revealed){
     return 0;
   }
@@ -50,6 +51,12 @@ int reveal_bloc(int length, int height, Bloc map[length][height], int abs, int o
   		  }
   	  }
     }
+
+	if(map[abs][ord].Flag){
+		map[abs][ord].Flag = false;
+		*flag_pointer += 1;
+	}
+
     return 0;
   }
 }
@@ -63,6 +70,8 @@ void full_reveal(int length, int height, Bloc map[length][height]){
 }
 
 int turn(int length, int height, Bloc map[length][height], int flags){
+	flag_pointer = &flags;
+
   printf("Flags left: %d\n", flags);
   map_print(length, height, map);
   while(getchar()!='\n'); //flush
@@ -111,8 +120,14 @@ int turn(int length, int height, Bloc map[length][height], int flags){
   	}
   }
 
-  if(act=='F' && map[abs][ord].Flag == false){
+  if(act=='F' && !map[abs][ord].Flag){
     map[abs][ord].Flag = true;
+
+	if(flags == 0){
+		colorPrintf("Warning : You're out of flags.\n",YELLOW);
+		return turn(length, height, map, flags);
+	}
+
     return turn(length, height, map, flags-1);
   }
   else if(act=='F' && map[abs][ord].Flag){
@@ -120,6 +135,11 @@ int turn(int length, int height, Bloc map[length][height], int flags){
     return turn(length, height, map, flags+1);
   }
   else if(act=='R'){
+	if(map[abs][ord].Flag){
+		printf("You can't reveal a flagged square.\n");
+		return turn(length, height, map, flags);
+	}
+
     if(reveal_bloc(length, height, map, abs, ord, true) == -1){ // Game over
       full_reveal(length, height, map);
       map_print(length, height, map);
