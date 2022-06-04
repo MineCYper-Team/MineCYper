@@ -35,27 +35,40 @@ void bloc_print(Bloc bloc){ //print a bloc depending on what it is
 void map_print(int length, int height, Bloc map[length][height], int flags_left){ //print the map
 	printf("Flags left: %d\n \\ ", flags_left);
 	for(int i = 0; i<length; i++){
-		printf("%c ", 'A'+i);
+		printf(" %c |", 'A'+i);
 	}
 	printf("\n  \\");
 	for(int i = 0; i<length; i++){
-		printf("__");
+		printf("___|");
 	}
 	for(int i = 0; i<height; i++){
-		if(i<10){
+		//printf("\n\n ligne n: %d\n\n", i);
+		if(i<9){
 			printf("\n %d| ", i+1);
 		}
 		else{
 			printf("\n%d| ", i+1);
 		}
-		for(int j = 0; i<length; i++){
+		//printf("\n\n ligne n %d introduction finie\n\n", i);
+		for(int j = 0; j<length; j++){
 			bloc_print(map[i][j]);
 			printf(" | ");
+			//printf("\n\n ligne n %d colomne %d finie\n\n", i, j);
 		}
-		printf("\n----");
-		for(int j = 0; i<length; i++){
-			printf("----");
+		if(i+1 == height){
+			printf("\n---");
+			for(int j = 1; j<length; j++){
+				printf("----");
+			}
+			printf("---/");
 		}
+		else{
+			printf("\n--|");
+			for(int j = 0; j<length; j++){
+				printf("---|");
+			}
+		}
+		//printf("\n\n ligne n %d finie\n\n", i);
 	}
 	printf("\n\n");
 }

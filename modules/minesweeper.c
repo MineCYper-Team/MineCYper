@@ -9,7 +9,7 @@ int showMainMenu(){ //main menu of the game
 
 	//Selection
 	printf(" [1] Play\n [2] High Score\n [3] Credits\n [4] Exit\n\n\n");
-	selection = provideIntegerChoice(1, 4, "Please enter a value between 1 and 4 : ", "Please enter a number : ");
+	selection = provideIntegerChoice(1, 4, "Please enter a value between 1 and 4 :\n", "Please enter a number :\n");
 
 	switch (selection){
 	case 1:
@@ -26,8 +26,45 @@ int showMainMenu(){ //main menu of the game
 			}
 			//printf("Char 1: %c\nChar 2: %c\nChar 3: %c\nChar 4: %c\n", selection_2[0], selection_2[1], selection_2[2], selection_2[3]);
 		}while(selection_2[0]<'1' || selection_2[0]>'4');
-		printf("WIP\n");
-
+		/*int height;
+		int length;
+		int mines;*/
+		int score;
+		int selection_3 = atoi(&selection_2[0]);
+		printf("selec 2: %c\n", selection_2[0]);
+		printf("selec 3: %d\n\n", selection_3);
+		switch (selection_3){
+		case 1:
+			/*height = 9;
+			length = 9;
+			mines = 10;*/
+			Bloc map_1[9][9]={};
+			score = first_turn(9, 9, map_1, 10);
+			break;
+		case 2:
+			/*height = 16;
+			length = 16;
+			mines = 40;*/
+			Bloc map_2[16][16]={};
+			score = first_turn(16, 16, map_2, 40);
+			break;
+		case 3:
+			colorPrintf("WIP\n\n",YELLOW);
+			return showMainMenu();
+			break;
+		case 4:
+			return showMainMenu();
+			break;
+		default:
+			colorPrintf("Error : This shouldn't happen. Going back to the menu.\n\n",RED);
+			return showMainMenu();
+			break;
+			//9x9 10; 16x16 40
+		}
+		Bloc map[16][16]={};
+		first_turn(16, 16, map, 40);
+		/*Bloc map[length][height]={};
+		map_print(length, height, map, mines);*/
 		return showMainMenu();
 		break;
 	case 2:
