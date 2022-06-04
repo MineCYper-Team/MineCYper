@@ -41,11 +41,9 @@ int first_turn(int length, int height, Bloc map[length][height], int mines){
 	}
 	abs = txt-'A';
 	ord--;
-	
+
   printf("Square selected: %c%d\n\n", abs+'A', ord+1);
   map_init(length, height, map, mines, abs, ord);
   reveal_bloc(length, height, map, abs, ord, true);
-  printf("Flags left: %d\n", mines);
-  map_print(length, height, map);
   return turn(length, height, map, mines);
 }

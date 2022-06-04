@@ -1,43 +1,55 @@
 #include "header.h"
 
-int reveal_bloc(int length, int height, Bloc map[length][height], int abs, int ord, bool gameplay){
-    if(map[abs][ord].Revealed){
-      return 0;
+bool winning(int length, int height, Bloc map[length][height]){
+  for(int i=0; i<height; i++){
+    for(int j=0; j<length; j++){
+      if(map[j][i].Revealed == false && map[j][i].Value > -1){
+        return false;
+      }
     }
-    else if(map[abs][ord].Value < 0){
-      map[abs][ord].Revealed = 1;
-      if(gameplay){
-        map[abs][ord].Value = -2;
-      }
-      else{
-        map[abs][ord].Value = -1;
-      }
-      return -1;
+  }
+  return true;
+}
+
+int reveal_bloc(int length, int height, Bloc map[length][height], int abs, int ord, bool gameplay){
+  map[abs][ord].Flag = false;
+  if(map[abs][ord].Revealed){
+    return 0;
+  }
+  else if(map[abs][ord].Value < 0){
+    map[abs][ord].Revealed = 1;
+    if(gameplay){
+      map[abs][ord].Value = -2;
     }
     else{
-      map[abs][ord].Value = 0;
-      map[abs][ord].Revealed = 1;
+      map[abs][ord].Value = -1;
+    }
+    return -1;
+  }
+  else{
+    map[abs][ord].Value = 0;
+    map[abs][ord].Revealed = 1;
 
-      //Update bloc according to mines nearby
-	  map[abs][ord].Value = 0;
-	  for(int i = -1; i<2; i++){
-		  for(int j = -1; j<2; j++){
-			  if(abs+i >= 0 && abs+i < length && ord+j >= 0 && ord+j < height){
-				  if(map[abs+i][ord+j].Value < 0){
-					  map[abs][ord].Value++;
-				  }
-			  }
-		  }
-	  }
-	  if(map[abs][ord].Value == 0){
-		  for(int i = -1; i<2; i++){
-			  for(int j = -1; j<2; j++){
-				  if(abs+i >= 0 && abs+i < length && ord+j >= 0 && ord+j < height){
-					  reveal_bloc(length, height, map, abs+i, ord+j, gameplay);
-				  }
-			  }
-		  }
-	  }
+    //Update bloc according to mines nearby
+    map[abs][ord].Value = 0;
+    for(int i = -1; i<2; i++){
+  	  for(int j = -1; j<2; j++){
+  		  if(abs+i >= 0 && abs+i < length && ord+j >= 0 && ord+j < height){
+  			  if(map[abs+i][ord+j].Value < 0){
+  				  map[abs][ord].Value++;
+  			  }
+  		  }
+  	  }
+    }
+    if(map[abs][ord].Value == 0){
+  	  for(int i = -1; i<2; i++){
+  		  for(int j = -1; j<2; j++){
+  			  if(abs+i >= 0 && abs+i < length && ord+j >= 0 && ord+j < height){
+  				  reveal_bloc(length, height, map, abs+i, ord+j, gameplay);
+  			  }
+  		  }
+  	  }
+    }
     return 0;
   }
 }
@@ -70,7 +82,7 @@ int turn(int length, int height, Bloc map[length][height], int flags){
 		if(type1 == 1 && type2 == 1 && (ord >= 1 && ord <= height) && (txt>='A' && txt<='A'+length)){
 			if(map[txt-'A'][ord-1].Revealed){
 				printf("This square is already revealed\n");
-				while(getchar()!='\n');
+				while(getchar()!='\n'); //flush
 			}
 			else{
 				isValidInput = true;
@@ -89,14 +101,14 @@ int turn(int length, int height, Bloc map[length][height], int flags){
   while(getchar()!='\n');
   isValidInput = false;
   while(isValidInput == false) {
-	type1 = scanf("%c", &act);
-	if(type1 == 1 && (act == 'R' || act == 'F')){
-	  isValidInput = true;
-	}
-	else{
-	  printf("Invalid input, try again.\n");
-	  while(getchar()!='\n'); //flush
-	}
+  	type1 = scanf("%c", &act);
+  	if(type1 == 1 && (act == 'R' || act == 'F')){
+  	  isValidInput = true;
+  	}
+  	else{
+  	  printf("Invalid input, try again.\n");
+  	  while(getchar()!='\n'); //flush
+  	}
   }
 
   if(act=='F' && map[abs][ord].Flag == false){
@@ -115,7 +127,15 @@ int turn(int length, int height, Bloc map[length][height], int flags){
       return 0;
     }
     else{
-      return turn(length, height, map, flags);
+      if(winning(length, height, map)){
+        full_reveal(length, height, map);
+        map_print(length, height, map);
+        colorPrintf("\nVICTORY\n",GREEN);
+        return 1;
+      }
+      else{
+        return turn(length, height, map, flags);
+      }
     }
   }
   else{

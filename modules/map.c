@@ -2,7 +2,7 @@
 
 void bloc_print(Bloc bloc){ //print a bloc depending on what it is
 	if(bloc.Flag){
-		printf("?");
+		colorPrintf("?",GREEN);
 	}
 	else if(bloc.Revealed){
 		if(bloc.Value == -2){
