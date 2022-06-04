@@ -27,3 +27,4 @@ int provideIntegerChoice(int minimum, int maximum, char RangeFailMessage[], char
 void colorPrintf(char * Text, int Color);
 int first_turn(int length, int height, Bloc map[length][height], int mines);
 void map_print(int length, int height, Bloc map[length][height]);
+int reveal_bloc(int length, int height, Bloc map[length][height], int abs, int ord);

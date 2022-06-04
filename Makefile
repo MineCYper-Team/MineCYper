@@ -21,13 +21,16 @@ utilities.o :
 init.o :
 	@$(CC) -c modules/init.c -o $(BUILD_FOLDER)init.o
 
+game.o :
+	@$(CC) -c modules/game.c -o $(BUILD_FOLDER)game.o
+
 # Everything at once (should be replaced with a wildcard)
-all : minesweeper.o map.o utilities.o init.o
-	@$(CC) $(BUILD_FOLDER)minesweeper.o $(BUILD_FOLDER)map.o $(BUILD_FOLDER)utilities.o $(BUILD_FOLDER)init.o -o $(EXECUTABLE_NAME)
+all : minesweeper.o map.o utilities.o init.o game.o
+	@$(CC) $(BUILD_FOLDER)minesweeper.o $(BUILD_FOLDER)map.o $(BUILD_FOLDER)utilities.o $(BUILD_FOLDER)init.o $(BUILD_FOLDER)game.o -o $(EXECUTABLE_NAME)
 
 # Cleaner (should be replaced with a wildcard)
 clean :
-	@rm -f $(BUILD_FOLDER)minesweeper.o $(BUILD_FOLDER)map.o $(BUILD_FOLDER)utilities.o $(BUILD_FOLDER)init.o
+	@rm -f $(BUILD_FOLDER)minesweeper.o $(BUILD_FOLDER)map.o $(BUILD_FOLDER)utilities.o $(BUILD_FOLDER)init.o $(BUILD_FOLDER)game.o
 
 # Runners
 run : all
