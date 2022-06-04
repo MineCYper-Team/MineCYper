@@ -12,30 +12,31 @@ int reveal_bloc(int length, int height, Bloc map[length][height], int abs, int o
     else{
       map[abs][ord].Value = 0;
       map[abs][ord].Revealed = 1;
-      if(abs>0 && ord>0 && map[abs-1][ord-1].Value == -1){
-        map[abs][ord].Value++;
-      }
-      if(ord>0 && map[abs][ord-1].Value == -1){
-        map[abs][ord].Value++;
-      }
-      if(abs<length-1 && ord>0 && map[abs+1][ord-1].Value == -1){
-        map[abs][ord].Value++;
-      }
-      if(abs<length-1 && map[abs+1][ord].Value == -1){
-        map[abs][ord].Value++;
-      }
-      if(abs<length-1 && ord<height-1 && map[abs+1][ord+1].Value == -1){
-        map[abs][ord].Value++;
-      }
-      if(ord<height-1 && map[abs][ord+1].Value == -1){
-        map[abs][ord].Value++;
-      }
-      if(abs>0 && ord<height-1 && map[abs-1][ord+1].Value == -1){
-        map[abs][ord].Value++;
-      }
-      if(abs>0 &&  map[abs-1][ord].Value == -1){
-        map[abs][ord].Value++;
-      }
+
+      //Update bloc according to mines nearby
+	  int mines_nearby = 0;
+	  for(int i = -1; i<2; i++){
+		  for(int j = -1; j<2; j++){
+			  if(abs+i >= 0 && abs+i < length && ord+j >= 0 && ord+j < height){
+				  if(map[abs+i][ord+j].Value == -1 || map[abs+i][ord+j].Value == -2){
+					  mines_nearby++;
+				  }
+			  }
+		  }
+	  }
+	  /* if(mines_nearby == 0){
+		  for(int i = -1; i<2; i++){
+			  for(int j = -1; j<2; j++){
+				  if(abs+i >= 0 && abs+i < length && ord+j >= 0 && ord+j < height){
+					  reveal_bloc(length, height, map, abs+i, ord+j);
+				  }
+			  }
+		  }
+	  } */
+	  //else{
+		  map[abs][ord].Value = mines_nearby;
+	  //}
+
       return 0;
     }
 }
