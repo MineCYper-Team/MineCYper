@@ -57,8 +57,9 @@ int turn(int length, int height, Bloc map[length][height], int flags){
   int abs;
 	int ord;
 	char txt;
-  char act[100];
+  char act;
 	printf("What square do you target?\n");
+
 	fflush(stdin);
 	bool isValidInput = false;
 	int type1,type2;
@@ -67,7 +68,7 @@ int turn(int length, int height, Bloc map[length][height], int flags){
 		type2 = scanf("%d", &ord);
     abs = txt-'A';
   	ord--;
-		if(type1 == 1 && type2 == 1 && (ord >= 1 && ord <= height && (txt>='A' && txt<='A'+length))){
+		if(type1 == 1 && type2 == 1 && (ord >= 1 && ord <= height) && (txt>='A' && txt<='A'+length)){
       if(map[abs][ord].Revealed){
         printf("This square is already revealed\n");
       }
@@ -80,21 +81,31 @@ int turn(int length, int height, Bloc map[length][height], int flags){
 			while(getchar()!='\n'); //flush
 		}
 	}
+
   printf("Do you want to reveal (R) or flag (F)?\n");
-  scanf("%c", act);
-  while(act[0]!='R' && act[0]!='F'){
-    while(getchar()!='\n'); //flush
-    scanf("%s", act);
-  };
-  if(act[0]=='F' && map[abs][ord].Flag == false){
+  fflush(stdin);
+  while(getchar()!='\n');
+  isValidInput = false;
+  while(isValidInput == false) {
+	type1 = scanf("%c", &act);
+	if(type1 == 1 && (act == 'R' || act == 'F')){
+	  isValidInput = true;
+	}
+	else{
+	  printf("Invalid input, try again.\n");
+	  while(getchar()!='\n'); //flush
+	}
+  }
+
+  if(act=='F' && map[abs][ord].Flag == false){
     map[abs][ord].Flag = true;
     return turn(length, height, map, flags-1);
   }
-  else if(act[0]=='F' && map[abs][ord].Flag){
+  else if(act=='F' && map[abs][ord].Flag){
     map[abs][ord].Flag = false;
     return turn(length, height, map, flags+1);
   }
-  else if(act[0]=='R'){
+  else if(act=='R'){
     if(reveal_bloc(length, height, map, abs, ord, true) == -1){ // Game over
       full_reveal(length, height, map);
       map_print(length, height, map);
