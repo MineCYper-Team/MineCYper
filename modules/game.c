@@ -12,9 +12,13 @@ bool winning(int length, int height, Bloc map[length][height]){
 }
 
 int reveal_bloc(int length, int height, Bloc map[length][height], int abs, int ord, bool gameplay){
-  map[abs][ord].Flag = false;
+  int flag_removed = 0;
   if(map[abs][ord].Revealed){
     return 0;
+  }
+  if(map[abs][ord].Flag){
+    map[abs][ord].Flag = false;
+    flag_removed++;
   }
   else if(map[abs][ord].Value < 0){
     map[abs][ord].Revealed = 1;
@@ -45,12 +49,12 @@ int reveal_bloc(int length, int height, Bloc map[length][height], int abs, int o
   	  for(int i = -1; i<2; i++){
   		  for(int j = -1; j<2; j++){
   			  if(abs+i >= 0 && abs+i < length && ord+j >= 0 && ord+j < height){
-  				  reveal_bloc(length, height, map, abs+i, ord+j, gameplay);
+  				  flag_removed = flag_removed + reveal_bloc(length, height, map, abs+i, ord+j, gameplay);
   			  }
   		  }
   	  }
     }
-    return 0;
+    return flag_removed;
   }
 }
 
@@ -111,7 +115,7 @@ int turn(int length, int height, Bloc map[length][height], int flags){
   	}
   }
 
-  if(act=='F' && map[abs][ord].Flag == false){
+  if(act=='F' && !map[abs][ord].Flag){
     map[abs][ord].Flag = true;
     return turn(length, height, map, flags-1);
   }
@@ -120,13 +124,15 @@ int turn(int length, int height, Bloc map[length][height], int flags){
     return turn(length, height, map, flags+1);
   }
   else if(act=='R'){
-    if(reveal_bloc(length, height, map, abs, ord, true) == -1){ // Game over
+    int reveal_value = reveal_bloc(length, height, map, abs, ord, true);
+    if(reveal_value == -1){ // Game over
       full_reveal(length, height, map);
       map_print(length, height, map);
       colorPrintf("\nGAME OVER\n",RED);
       return 0;
     }
     else{
+      flags = flags + reveal_value;
       if(winning(length, height, map)){
         full_reveal(length, height, map);
         map_print(length, height, map);
