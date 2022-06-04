@@ -14,17 +14,17 @@ int reveal_bloc(int length, int height, Bloc map[length][height], int abs, int o
       map[abs][ord].Revealed = 1;
 
       //Update bloc according to mines nearby
-	  int mines_nearby = 0;
+	  map[abs][ord].Value = 0;
 	  for(int i = -1; i<2; i++){
 		  for(int j = -1; j<2; j++){
 			  if(abs+i >= 0 && abs+i < length && ord+j >= 0 && ord+j < height){
 				  if(map[abs+i][ord+j].Value < 0){
-					  mines_nearby++;
+					  map[abs][ord].Value++;
 				  }
 			  }
 		  }
 	  }
-	  if(mines_nearby == 0){
+	  if(map[abs][ord].Value == 0){
 		  for(int i = -1; i<2; i++){
 			  for(int j = -1; j<2; j++){
 				  if(abs+i >= 0 && abs+i < length && ord+j >= 0 && ord+j < height){
@@ -32,9 +32,6 @@ int reveal_bloc(int length, int height, Bloc map[length][height], int abs, int o
 				  }
 			  }
 		  }
-	  }
-	  else{
-		  map[abs][ord].Value = mines_nearby;
 	  }
     return 0;
   }

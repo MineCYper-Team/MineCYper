@@ -32,7 +32,7 @@ int first_turn(int length, int height, Bloc map[length][height], int mines){
 		type1 = scanf("%c", &txt);
 		type2 = scanf("%d", &ord);
 		
-		if(type1 == 1 && type2 == 1 && (ord >= 1 && ord <= height && (txt>='A' && txt<='A'+length))){
+		if((type1 == 1 && type2 == 1) && (ord >= 1 && ord <= height) && (txt>='A' && txt<='A'+length)){
 			isValidInput = true;
 		}
 		else{

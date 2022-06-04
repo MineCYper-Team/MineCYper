@@ -33,20 +33,23 @@ int showMainMenu(){ //main menu of the game
 		int selection_3 = atoi(&selection_2[0]);
 		//printf("selec 2: %c\n", selection_2[0]);
 		//printf("selec 3: %d\n\n", selection_3);
+
+		int timer = time(NULL);
+
 		switch (selection_3){
 		case 1:;
-			/*height = 9;
-			length = 9;
-			mines = 10;*/
 			Bloc map_1[9][9]={};
 			score = first_turn(9, 9, map_1, 10);
+
+			timer = time(NULL)-timer;
+			printf("Time : %d\n\n", timer);
 			break;
 		case 2:;
-			/*height = 16;
-			length = 16;
-			mines = 40;*/
 			Bloc map_2[16][16]={};
 			score = first_turn(16, 16, map_2, 40);
+
+			timer = time(NULL)-timer;
+			printf("Time : %d\n\n", timer);
 			break;
 		case 3:;
 			colorPrintf("WIP\n\n",YELLOW);
