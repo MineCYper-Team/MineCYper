@@ -12,7 +12,7 @@ int showMainMenu(){ //main menu of the game
 	selection = provideIntegerChoice(1, 4, "Please enter a value between 1 and 4\n", "Please enter a number\n");
 
 	switch (selection){
-	case 1:
+	case 1:;
 		char selection_2[100]={};
 		do{
 			while(getchar()!='\n'); //flush
@@ -34,28 +34,28 @@ int showMainMenu(){ //main menu of the game
 		//printf("selec 2: %c\n", selection_2[0]);
 		//printf("selec 3: %d\n\n", selection_3);
 		switch (selection_3){
-		case 1:
+		case 1:;
 			/*height = 9;
 			length = 9;
 			mines = 10;*/
 			Bloc map_1[9][9]={};
 			score = first_turn(9, 9, map_1, 10);
 			break;
-		case 2:
+		case 2:;
 			/*height = 16;
 			length = 16;
 			mines = 40;*/
 			Bloc map_2[16][16]={};
 			score = first_turn(16, 16, map_2, 40);
 			break;
-		case 3:
+		case 3:;
 			colorPrintf("WIP\n\n",YELLOW);
 			return showMainMenu();
 			break;
-		case 4:
+		case 4:;
 			return showMainMenu();
 			break;
-		default:
+		default:;
 			colorPrintf("Error : This shouldn't happen. Going back to the menu.\n\n",RED);
 			return showMainMenu();
 			break;
@@ -65,12 +65,12 @@ int showMainMenu(){ //main menu of the game
 		map_print(length, height, map, mines);*/
 		return showMainMenu();
 		break;
-	case 2:
+	case 2:;
 		printf("WIP\n");
 
 		return showMainMenu();
 		break;
-	case 3:
+	case 3:;
 		printf("        ______      __  __   _          __     _______\n");					// ______      __  __   _          __     _______
 		printf("        | ___ \\     | | | | | |         | |   (_) ___ \\\n");			// | ___ \     | | | | | |         | |   (_) ___ \ .
 		printf("        | |_/ / __ _| |_| |_| | ___  ___| |__  _| |_/ /\n");				// | |_/ / __ _| |_| |_| | ___  ___| |__  _| |_/ /
@@ -95,11 +95,11 @@ int showMainMenu(){ //main menu of the game
 
 		return showMainMenu();
 		break;
-	case 4:
+	case 4:;
 		colorPrintf("\nGoodbye\n",GREEN);
 		return 0;
 		break;
-	default:
+	default:;
 		colorPrintf("Error : This shouldn't happen. Going back to the menu.\n\n",RED);
 		return showMainMenu();
 		break;
