@@ -25,13 +25,25 @@ int first_turn(int length, int height, Bloc map[length][height], int mines){
 	char txt;
 	printf("What square do you target?\n");
 	fflush(stdin);
-	do{
-		scanf("%c", &txt);
-	}while(txt<'A' || txt>'A'+length);
+
+	bool isValidInput = false;
+	int type1,type2;
+	while(isValidInput == false) {
+		type1 = scanf("%c", &txt);
+		type2 = scanf("%d", &ord);
+		
+		if(type1 == 1 && type2 == 1 && (ord >= 1 && ord <= height && (txt>='A' && txt<='A'+length))){
+			isValidInput = true;
+		}
+		else{
+			printf("Invalid input, try again.\n");
+			while(getchar()!='\n'); //flush
+		}
+
+	}
+	
 	abs = txt-'A';
-	do{
-		scanf("%d", &ord);
-	}while(ord<1 || ord>height);
+
 	ord--;
   printf("Square selected: %c%d\n\n", abs+'A', ord+1);
   map_init(length, height, map, mines, abs, ord);
