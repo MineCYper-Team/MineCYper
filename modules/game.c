@@ -66,21 +66,23 @@ int turn(int length, int height, Bloc map[length][height], int flags){
 	while(isValidInput == false) {
 		type1 = scanf("%c", &txt);
 		type2 = scanf("%d", &ord);
-    abs = txt-'A';
-  	ord--;
+
 		if(type1 == 1 && type2 == 1 && (ord >= 1 && ord <= height) && (txt>='A' && txt<='A'+length)){
-      if(map[abs][ord].Revealed){
-        printf("This square is already revealed\n");
-      }
-      else{
-        isValidInput = true;
-      }
+			if(map[txt-'A'][ord-1].Revealed){
+				printf("This square is already revealed\n");
+				while(getchar()!='\n');
+			}
+			else{
+				isValidInput = true;
+			}
 		}
 		else{
 			printf("Invalid input, try again.\n");
-			while(getchar()!='\n'); //flush
+			while(getchar()!='\n');
 		}
 	}
+	abs = txt-'A';
+	ord--;
 
   printf("Do you want to reveal (R) or flag (F)?\n");
   fflush(stdin);
