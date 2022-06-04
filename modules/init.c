@@ -55,8 +55,10 @@ void map_init(int length, int height, Bloc map[length][height], int mines, int a
       int abs_x = rand()%length;
       int ord_x = rand()%height;
       if(abs_x<abs-1 || abs_x>abs+1 || ord_x<ord-1 || ord_x>ord+1){ //not within 3x3 of first tile
-        map[abs_x][ord_x].Value = -1;
-        x = 1;
+        if(map[abs_x][ord_x].Value != -1){
+          map[abs_x][ord_x].Value = -1;
+          x = 1;
+        }
       }
     }
   }

@@ -52,7 +52,7 @@ void map_print(int length, int height, Bloc map[length][height]){ //print the ma
 		}
 		//printf("\n\n ligne n %d introduction finie\n\n", i);
 		for(int j = 0; j<length; j++){
-			bloc_print(map[i][j]);
+			bloc_print(map[j][i]);
 			printf(" | ");
 			//printf("\n\n ligne n %d colomne %d finie\n\n", i, j);
 		}
