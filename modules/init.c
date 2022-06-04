@@ -18,13 +18,13 @@ int reveal_bloc(int length, int height, Bloc map[length][height], int abs, int o
 	  for(int i = -1; i<2; i++){
 		  for(int j = -1; j<2; j++){
 			  if(abs+i >= 0 && abs+i < length && ord+j >= 0 && ord+j < height){
-				  if(map[abs+i][ord+j].Value == -1 || map[abs+i][ord+j].Value == -2){
+				  if(map[abs+i][ord+j].Value < 0){
 					  mines_nearby++;
 				  }
 			  }
 		  }
 	  }
-	  /* if(mines_nearby == 0){
+	  if(mines_nearby == 0){
 		  for(int i = -1; i<2; i++){
 			  for(int j = -1; j<2; j++){
 				  if(abs+i >= 0 && abs+i < length && ord+j >= 0 && ord+j < height){
@@ -32,10 +32,10 @@ int reveal_bloc(int length, int height, Bloc map[length][height], int abs, int o
 				  }
 			  }
 		  }
-	  } */
-	  //else{
+	  }
+	  else{
 		  map[abs][ord].Value = mines_nearby;
-	  //}
+	  }
 
       return 0;
     }
