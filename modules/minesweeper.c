@@ -29,27 +29,27 @@ int showMainMenu(){ //main menu of the game
 		/*int height;
 		int length;
 		int mines;*/
-		int score;
+		int endgameResult;
 		int selection_3 = atoi(&selection_2[0]);
 		//printf("selec 2: %c\n", selection_2[0]);
 		//printf("selec 3: %d\n\n", selection_3);
 
-		int timer = time(NULL);
+		int timeOnBeginning;
 
 		switch (selection_3){
 		case 1:;
+			timeOnBeginning = time(NULL);
 			Bloc map_1[9][9]={};
-			score = first_turn(9, 9, map_1, 10);
+			endgameResult = first_turn(9, 9, map_1, 10);
 
-			timer = (time(NULL)-timer) * score;
-			printf("Time : %d\n\n", timer);
+			saveAndShowTime(timeOnBeginning, endgameResult, NORMAL_DIFFICULTY_SAVEDATA_LOCATION);
 			break;
 		case 2:;
+			timeOnBeginning = time(NULL);
 			Bloc map_2[16][16]={};
-			score = first_turn(16, 16, map_2, 40);
+			endgameResult = first_turn(16, 16, map_2, 40);
 
-			timer = (time(NULL)-timer) * score;
-			printf("Time : %d\n\n", timer);
+			saveAndShowTime(timeOnBeginning, endgameResult, HARD_DIFFICULTY_SAVEDATA_LOCATION);
 			break;
 		case 3:;
 			printf("Please enter the height of the grid\n");
@@ -67,9 +67,10 @@ int showMainMenu(){ //main menu of the game
 				for(int i = 0; i<height; i++){
 					map_3[i] = malloc(length * sizeof(Bloc));
 				}
-				score = first_turn(length, height, map_3, mines);
-				timer = (time(NULL)-timer) * score;
-				printf("Time : %d\n\n", timer);
+				endgameResult = first_turn(length, height, map_3, mines);
+				timeOnBeginning = (time(NULL)-timeOnBeginning) * endgameResult;
+				printf("Time : %d\n", timeOnBeginning);
+				colorPrintf("Note : this game is customized. Time will not be saved.\n", RED);
 				for(int i = 0; i<height; i++){
 					free(map_3[i]);
 				}
@@ -93,7 +94,21 @@ int showMainMenu(){ //main menu of the game
 		return showMainMenu();
 		break;
 	case 2:;
-		printf("WIP\n");
+		colorPrintf("\nNormal difficulty :",YELLOW);
+		if (doesFileExist(NORMAL_DIFFICULTY_SAVEDATA_LOCATION) == false){
+			colorPrintf("\nData not found.\n\n",RED);
+		}
+		else{
+			showBestTimes(NORMAL_DIFFICULTY_SAVEDATA_LOCATION, 5);
+		}
+
+		colorPrintf("\nHard difficulty :",RED);
+		if (doesFileExist(HARD_DIFFICULTY_SAVEDATA_LOCATION) == false){
+			colorPrintf("\nData not found.\n\n",RED);
+		}
+		else{
+			showBestTimes(HARD_DIFFICULTY_SAVEDATA_LOCATION, 5);
+		}
 
 		return showMainMenu();
 		break;
@@ -125,7 +140,7 @@ int showMainMenu(){ //main menu of the game
 		return showMainMenu();
 		break;
 	case 4:;
-		colorPrintf("\nGoodbye\n",GREEN);
+		colorPrintf("\nBye bye !\n",GREEN);
 		return 0;
 		break;
 	default:;

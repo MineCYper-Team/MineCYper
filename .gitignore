@@ -13,6 +13,9 @@
 # VS-Code
 /.vscode
 
+# Ignore save files
+/saves
+
 # Build folder
 /build
 
