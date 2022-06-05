@@ -1,5 +1,6 @@
 #include "header.h"
 
+//This function entirely clears the grid.
 void full_clear(int length, int height, Bloc** map){
   for(int i=0; i<height; i++){
     for(int j=0; j<length; j++){
@@ -10,6 +11,7 @@ void full_clear(int length, int height, Bloc** map){
   }
 }
 
+//This function manages initiation of the grid.
 void map_init(int length, int height, Bloc** map, int mines, int abs, int ord){
   for(int i=0; i<mines; i++){
     int x=0;
@@ -26,6 +28,7 @@ void map_init(int length, int height, Bloc** map, int mines, int abs, int ord){
   }
 }
 
+//This function manages the very first turn of the game.
 int first_turn(int length, int height, Bloc** map, int mines){
   full_clear(length, height, map);
   printf("Flags left: %d\n", mines);

@@ -1,6 +1,7 @@
 #include "header.h"
 
-void bloc_print(Bloc bloc){ //print a bloc depending on what it is
+//This function will print a square depending on its data.
+void bloc_print(Bloc bloc){
 	if(bloc.Flag){
 		colorPrintf("#",GREEN);
 	}
@@ -41,7 +42,8 @@ void bloc_print(Bloc bloc){ //print a bloc depending on what it is
 	}
 }
 
-void map_print(int length, int height, Bloc** map){ //print the map
+//This function will print the grid.
+void map_print(int length, int height, Bloc** map){
 	//printf("Flags left: %d\n", flags_left);
 	printf(" \\ ");
 	for(int i = 0; i<length; i++){

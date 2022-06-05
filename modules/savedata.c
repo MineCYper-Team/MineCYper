@@ -5,6 +5,7 @@ typedef struct {
 	int rawTime;
 } TimeRecord;
 
+//This function will show to the player the best times registered in his difficulty.
 void showBestTimes(char * fileName, int size){
 	//"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHH" --JordanViknar, 2022-06-05
 
@@ -50,9 +51,16 @@ void showBestTimes(char * fileName, int size){
 		free(savedTimeAsClock);
 	}
 
+	//We free everything
+	for (int i = 0; i < numberOfRecords; i++){
+		free(BestTimes[i].username);
+	}
+	free(BestTimes);
+
 	fclose(file);
 }
 
+//Shows the time taken to complete the game, and saves it in a savefile. Additionally, it shows the best times.
 void saveAndShowTime(int timeOnBeginning, char * fileName){
 	int timeResult = time(NULL) - timeOnBeginning;
 	char *timeString = timeToClock(time(NULL) - timeOnBeginning);
@@ -77,6 +85,7 @@ void saveAndShowTime(int timeOnBeginning, char * fileName){
 	printf("\n");
 }
 
+//Will check if the file specified exists from the root of the project
 bool doesFileExist(char * fileName){
 	FILE * file = fopen(fileName, "r");
 	if(file == NULL){

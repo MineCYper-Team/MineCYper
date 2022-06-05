@@ -1,12 +1,14 @@
 #include "header.h"
 
-int max_(int a, int b){ //take the greater of two
+//This function will return the greatest of 2 integers
+int max_(int a, int b){
 	if(a>b){
 		return a;
 	}
 	return b;
 }
 
+//This function manages selection of an integer through the menus.
 int provideIntegerChoice(int minimum, int maximum, char RangeFailMessage[], char IntegerFailMessage[]){
 	int integer = minimum - 1;
 	int type;
@@ -32,9 +34,6 @@ int provideIntegerChoice(int minimum, int maximum, char RangeFailMessage[], char
 //Colored Text
 void colorPrintf(char * Text, int Color){
 	printf("\033[%dm%s\033[0m", Color, Text);
-	/*printf("\033[%dm", Color);
-	printf("%s", Text);
-	printf("\033[0m");*/
 }
 
 //Convert seconds time to clock format
@@ -49,6 +48,7 @@ char * timeToClock(int seconds){
 	return clock;
 }
 
+//Takes the smallest of 2 numbers.
 int min(int a, int b){
 	if(a<b){
 		return a;

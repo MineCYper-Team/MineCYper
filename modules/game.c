@@ -1,5 +1,6 @@
 #include "header.h"
 
+//This function will check if the player has won or if he has yet to.
 bool winning(int length, int height, Bloc** map){
   for(int i=0; i<height; i++){
     for(int j=0; j<length; j++){
@@ -11,6 +12,7 @@ bool winning(int length, int height, Bloc** map){
   return true;
 }
 
+//Reveals a square and additionally calls itself to the squares around it if its number is 0
 int reveal_bloc(int length, int height, Bloc** map, int abs, int ord, bool gameplay){
   int flag_removed = 0;
   if(map[abs][ord].Revealed){
@@ -58,6 +60,7 @@ int reveal_bloc(int length, int height, Bloc** map, int abs, int ord, bool gamep
   }
 }
 
+//This function reveals the entire grid
 void full_reveal(int length, int height, Bloc** map){
   for(int i=0; i<height; i++){
     for(int j=0; j<length; j++){
@@ -66,6 +69,7 @@ void full_reveal(int length, int height, Bloc** map){
   }
 }
 
+//This function will manage a turn of the player.
 int turn(int length, int height, Bloc** map, int flags){
   printf("\nFlags left: %d\n", flags);
   map_print(length, height, map);
