@@ -2,7 +2,7 @@
 
 void bloc_print(Bloc bloc){ //print a bloc depending on what it is
 	if(bloc.Flag){
-		colorPrintf("?",GREEN);
+		colorPrintf("#",GREEN);
 	}
 	else if(bloc.Revealed){
 		if(bloc.Value == -2){
@@ -33,7 +33,7 @@ void bloc_print(Bloc bloc){ //print a bloc depending on what it is
 			printf("\033[%dm%d\033[%dm", PURPLE, bloc.Value, RESET_COLOR);	//Purple
 		}
 		else if(bloc.Value > 8){
-			printf("#");	//Error
+			printf("?");	//Error
 		}
 	}
 	else{
@@ -41,7 +41,7 @@ void bloc_print(Bloc bloc){ //print a bloc depending on what it is
 	}
 }
 
-void map_print(int length, int height, Bloc map[length][height]){ //print the map
+void map_print(int length, int height, Bloc** map){ //print the map
 	//printf("Flags left: %d\n", flags_left);
 	printf(" \\ ");
 	for(int i = 0; i<length; i++){

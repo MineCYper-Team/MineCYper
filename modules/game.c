@@ -1,6 +1,6 @@
 #include "header.h"
 
-bool winning(int length, int height, Bloc map[length][height]){
+bool winning(int length, int height, Bloc** map){
   for(int i=0; i<height; i++){
     for(int j=0; j<length; j++){
       if(map[j][i].Revealed == false && map[j][i].Value > -1){
@@ -11,7 +11,7 @@ bool winning(int length, int height, Bloc map[length][height]){
   return true;
 }
 
-int reveal_bloc(int length, int height, Bloc map[length][height], int abs, int ord, bool gameplay){
+int reveal_bloc(int length, int height, Bloc** map, int abs, int ord, bool gameplay){
   int flag_removed = 0;
   if(map[abs][ord].Revealed){
     return 0;
@@ -20,8 +20,8 @@ int reveal_bloc(int length, int height, Bloc map[length][height], int abs, int o
     map[abs][ord].Flag = false;
     flag_removed++;
   }
-  else if(map[abs][ord].Value < 0){
-    map[abs][ord].Revealed = 1;
+  if(map[abs][ord].Value < 0){
+    map[abs][ord].Revealed = true;
     if(gameplay){
       map[abs][ord].Value = -2;
     }
@@ -58,7 +58,7 @@ int reveal_bloc(int length, int height, Bloc map[length][height], int abs, int o
   }
 }
 
-void full_reveal(int length, int height, Bloc map[length][height]){
+void full_reveal(int length, int height, Bloc** map){
   for(int i=0; i<height; i++){
     for(int j=0; j<length; j++){
       reveal_bloc(length, height, map, j, i, false);
@@ -66,7 +66,7 @@ void full_reveal(int length, int height, Bloc map[length][height]){
   }
 }
 
-int turn(int length, int height, Bloc map[length][height], int flags){
+int turn(int length, int height, Bloc** map, int flags){
   printf("Flags left: %d\n", flags);
   map_print(length, height, map);
   while(getchar()!='\n'); //flush

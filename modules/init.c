@@ -1,6 +1,6 @@
 #include "header.h"
 
-void full_clear(int length, int height, Bloc map[length][height]){
+void full_clear(int length, int height, Bloc** map){
   for(int i=0; i<height; i++){
     for(int j=0; j<length; j++){
       map[j][i].Value = 0;
@@ -10,7 +10,7 @@ void full_clear(int length, int height, Bloc map[length][height]){
   }
 }
 
-void map_init(int length, int height, Bloc map[length][height], int mines, int abs, int ord){
+void map_init(int length, int height, Bloc** map, int mines, int abs, int ord){
   for(int i=0; i<mines; i++){
     int x=0;
     while(x==0){
@@ -26,7 +26,7 @@ void map_init(int length, int height, Bloc map[length][height], int mines, int a
   }
 }
 
-int first_turn(int length, int height, Bloc map[length][height], int mines){
+int first_turn(int length, int height, Bloc** map, int mines){
   full_clear(length, height, map);
   printf("Flags left: %d\n", mines);
   map_print(length, height, map);

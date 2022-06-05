@@ -26,9 +26,10 @@ int showMainMenu(){ //main menu of the game
 			}
 			//printf("Char 1: %c\nChar 2: %c\nChar 3: %c\nChar 4: %c\n", selection_2[0], selection_2[1], selection_2[2], selection_2[3]);
 		}while(selection_2[0]<'1' || selection_2[0]>'4');
-		/*int height;
+		int height;
 		int length;
-		int mines;*/
+		int mines;
+		int gamemode;
 		int endgameResult;
 		int selection_3 = atoi(&selection_2[0]);
 		//printf("selec 2: %c\n", selection_2[0]);
@@ -38,45 +39,49 @@ int showMainMenu(){ //main menu of the game
 
 		switch (selection_3){
 		case 1:;
-			timeOnBeginning = time(NULL);
+			height = 9;
+			length = 9;
+			mines = 10;
+			gamemode = 0;
+			/*timeOnBeginning = time(NULL);
 			Bloc map_1[9][9]={};
 			endgameResult = first_turn(9, 9, map_1, 10);
-
-			saveAndShowTime(timeOnBeginning, endgameResult, NORMAL_DIFFICULTY_SAVEDATA_LOCATION);
+			saveAndShowTime(timeOnBeginning, endgameResult, NORMAL_DIFFICULTY_SAVEDATA_LOCATION);*/
 			break;
 		case 2:;
-			timeOnBeginning = time(NULL);
+			height = 16;
+			length = 16;
+			mines = 40;
+			gamemode = 1;
+			/*timeOnBeginning = time(NULL);
 			Bloc map_2[16][16]={};
 			endgameResult = first_turn(16, 16, map_2, 40);
-
-			saveAndShowTime(timeOnBeginning, endgameResult, HARD_DIFFICULTY_SAVEDATA_LOCATION);
+			saveAndShowTime(timeOnBeginning, endgameResult, HARD_DIFFICULTY_SAVEDATA_LOCATION);*/
 			break;
 		case 3:;
 			printf("Please enter the height of the grid\n");
-			int height = provideIntegerChoice(4, 25, "Please enter a value between 4 and 25\n", "Please enter a number\n");
+			height = provideIntegerChoice(4, 25, "Please enter a value between 4 and 25\n", "Please enter a number\n");
 			printf("Please enter the length of the grid\n");
-			int length = provideIntegerChoice(4, 25, "Please enter a value between 4 and 25\n", "Please enter a number\n");
+			length = provideIntegerChoice(4, 25, "Please enter a value between 4 and 25\n", "Please enter a number\n");
 			printf("Please enter the number of mines. This number cannot be greater than %d\n", ((height * length)-9)/2 );
-			int mines = provideIntegerChoice(1, ((height * length)-9)/2, "Please enter a value between 1 and the number specified above\n", "Please enter a number\n");
+			mines = provideIntegerChoice(1, ((height * length)-9)/2, "Please enter a value between 1 and the number specified above\n", "Please enter a number\n");
 			if(mines > ((height * length)-9)/2){
 				colorPrintf("Error : This shouldn't happen. Returning to menu.\n\n",RED);
 				return showMainMenu();
 			}
-			else{
-				Bloc** map_3 = malloc(height * sizeof(Bloc*));
-				for(int i = 0; i<height; i++){
-					map_3[i] = malloc(length * sizeof(Bloc));
-				}
-				endgameResult = first_turn(length, height, map_3, mines);
-				timeOnBeginning = (time(NULL)-timeOnBeginning) * endgameResult;
-				printf("Time : %d\n", timeOnBeginning);
-				colorPrintf("Note : this game is customized. Time will not be saved.\n", RED);
-				for(int i = 0; i<height; i++){
-					free(map_3[i]);
-				}
-				free(map_3);
-
+			gamemode = 2;
+			/*Bloc** map = malloc(height * sizeof(Bloc*));
+			for(int i = 0; i<height; i++){
+				map[i] = malloc(length * sizeof(Bloc));
 			}
+			endgameResult = first_turn(length, height, map, mines);
+			timeOnBeginning = (time(NULL)-timeOnBeginning) * endgameResult;
+			printf("Time : %d\n", timeOnBeginning);
+			colorPrintf("Note : this game is customized. Time will not be saved.\n", RED);
+			for(int i = 0; i<height; i++){
+				free(map[i]);
+			}
+			free(map);*/
 			//colorPrintf("WIP\n\n",YELLOW);
 			//return showMainMenu();
 			break;
@@ -87,10 +92,33 @@ int showMainMenu(){ //main menu of the game
 			colorPrintf("Error : This shouldn't happen. Going back to the menu.\n\n",RED);
 			return showMainMenu();
 			break;
-			//9x9 10; 16x16 40
 		}
-		/*Bloc map[length][height]={};
-		map_print(length, height, map, mines);*/
+		Bloc** map = malloc(height * sizeof(Bloc*));
+		for(int i = 0; i<height; i++){
+			map[i] = malloc(length * sizeof(Bloc));
+		}
+		timeOnBeginning = time(NULL);
+		endgameResult = first_turn(length, height, map, mines);
+		switch (gamemode){
+		case 0: ;
+			saveAndShowTime(timeOnBeginning, endgameResult, NORMAL_DIFFICULTY_SAVEDATA_LOCATION);
+			break;
+		case 1: ;
+			saveAndShowTime(timeOnBeginning, endgameResult, HARD_DIFFICULTY_SAVEDATA_LOCATION);
+			break;
+		case 2: ;
+			printf("Time : %d\n", timeOnBeginning);
+			colorPrintf("Note : this game is customized. Time will not be saved.\n", RED);
+			break;
+		default: ;
+			colorPrintf("Error : Wasn't able to save. Going back to the menu.\n\n",RED);
+			return showMainMenu();
+			break;
+		}
+		for(int i = 0; i<height; i++){
+			free(map[i]);
+		}
+		free(map);
 		return showMainMenu();
 		break;
 	case 2:;

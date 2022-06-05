@@ -25,10 +25,10 @@ typedef struct{
 
 int provideIntegerChoice(int minimum, int maximum, char RangeFailMessage[], char IntegerFailMessage[]);
 void colorPrintf(char * Text, int Color);
-int first_turn(int length, int height, Bloc map[length][height], int mines);
-void map_print(int length, int height, Bloc map[length][height]);
-int reveal_bloc(int length, int height, Bloc map[length][height], int abs, int ord, bool gameplay);
-int turn(int length, int height, Bloc map[length][height], int flags);
+int first_turn(int length, int height, Bloc** map, int mines);
+void map_print(int length, int height, Bloc** map);
+int reveal_bloc(int length, int height, Bloc** map, int abs, int ord, bool gameplay);
+int turn(int length, int height, Bloc** map, int flags);
 char * timeToClock(int seconds);
 
 //Time saving system
