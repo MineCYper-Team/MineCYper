@@ -73,7 +73,7 @@ void saveAndShowTime(int timeOnBeginning, int endgameResult, char * fileName){
 		fprintf(file, "%s;%d\n", username, timeResult);
 		fclose(file);
 
-		printf("\nFastest times :");
+		colorPrintf("\nFastest times :",RED);
 		showBestTimes(fileName, 5);
 		printf("\n");
 	}

@@ -9,12 +9,11 @@
 !Makefile
 # Unignore LICENSE
 !LICENSE
+# Ignore save files
+*.txt
 
 # VS-Code
 /.vscode
-
-# Ignore save files
-/saves
 
 # Build folder
 /build

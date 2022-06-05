@@ -36,5 +36,5 @@ int min(int a, int b);
 void showBestTimes(char * fileName, int size);
 void saveAndShowTime(int timeOnBeginning, int endgameResult, char * fileName);
 bool doesFileExist(char * fileName);
-#define NORMAL_DIFFICULTY_SAVEDATA_LOCATION "saves/normalDifficultyData.txt"
-#define HARD_DIFFICULTY_SAVEDATA_LOCATION "saves/hardDifficultyData.txt"
+#define NORMAL_DIFFICULTY_SAVEDATA_LOCATION "normalDifficultyData.txt"
+#define HARD_DIFFICULTY_SAVEDATA_LOCATION "hardDifficultyData.txt"

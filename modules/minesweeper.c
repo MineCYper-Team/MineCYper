@@ -137,6 +137,7 @@ int showMainMenu(){ //main menu of the game
 		else{
 			showBestTimes(HARD_DIFFICULTY_SAVEDATA_LOCATION, 5);
 		}
+		printf("\n");
 
 		return showMainMenu();
 		break;
