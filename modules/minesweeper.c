@@ -41,19 +41,43 @@ int showMainMenu(){ //main menu of the game
 			Bloc map_1[9][9]={};
 			score = first_turn(9, 9, map_1, 10);
 
-			timer = time(NULL)-timer;
+			timer = (time(NULL)-timer) * score;
 			printf("Time : %d\n\n", timer);
 			break;
 		case 2:;
 			Bloc map_2[16][16]={};
 			score = first_turn(16, 16, map_2, 40);
 
-			timer = time(NULL)-timer;
+			timer = (time(NULL)-timer) * score;
 			printf("Time : %d\n\n", timer);
 			break;
 		case 3:;
-			colorPrintf("WIP\n\n",YELLOW);
-			return showMainMenu();
+			printf("Please enter the height of the grid\n");
+			int height = provideIntegerChoice(4, 25, "Please enter a value between 4 and 25\n", "Please enter a number\n");
+			printf("Please enter the length of the grid\n");
+			int length = provideIntegerChoice(4, 25, "Please enter a value between 4 and 25\n", "Please enter a number\n");
+			printf("Please enter the number of mines. This number cannot be greater than %d\n", ((height * length)-9)/2 );
+			int mines = provideIntegerChoice(1, ((height * length)-9)/2, "Please enter a value between 1 and the number specified above\n", "Please enter a number\n");
+			if(mines > ((height * length)-9)/2){
+				colorPrintf("Error : This shouldn't happen. Returning to menu.\n\n",RED);
+				return showMainMenu();
+			}
+			else{
+				Bloc** map_3 = malloc(height * sizeof(Bloc*));
+				for(int i = 0; i<height; i++){
+					map_3[i] = malloc(length * sizeof(Bloc));
+				}
+				score = first_turn(length, height, map_3, mines);
+				timer = (time(NULL)-timer) * score;
+				printf("Time : %d\n\n", timer);
+				for(int i = 0; i<height; i++){
+					free(map_3[i]);
+				}
+				free(map_3);
+
+			}
+			//colorPrintf("WIP\n\n",YELLOW);
+			//return showMainMenu();
 			break;
 		case 4:;
 			return showMainMenu();
