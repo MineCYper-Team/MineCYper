@@ -8,8 +8,8 @@ int showMainMenu(){ //main menu of the game
 	srand(seed);
 
 	//Selection
-	printf(" [1] Play\n [2] High Score\n [3] Credits\n [4] Exit\n\n\n");
-	selection = provideIntegerChoice(1, 4, "Please enter a value between 1 and 4\n", "Please enter a number\n");
+	printf(" [1] Play\n [2] High Score\n [3] Tutorial\n [4] Credits\n [5] Exit\n\n\n");
+	selection = provideIntegerChoice(1, 5, "Please enter a value between 1 and 5\n", "Please enter a number\n");
 
 	switch (selection){
 	case 1:;
@@ -147,6 +147,29 @@ int showMainMenu(){ //main menu of the game
 		return showMainMenu();
 		break;
 	case 3:;
+		printf("\nThe objective of the game is to reveal every square without activating a mine.\n");
+		sleep(TUTORIAL_WAIT_TIME);
+		printf("To reveal a square, you must click on it. The first square never has a mine around it.\n");
+		sleep(TUTORIAL_WAIT_TIME);
+		printf("If you click on a square with a mine, you lose !\n");
+		sleep(TUTORIAL_WAIT_TIME);
+		printf("But if you click on an empty square, you find out it contains a number.\n");
+		sleep(TUTORIAL_WAIT_TIME);
+		printf("This number indicates how many mines are right next to the square.\n");
+		sleep(TUTORIAL_WAIT_TIME);
+		printf("To speed up gameplay, every 0 square will reveal the squares around it, upon being revealed.\n");
+		sleep(TUTORIAL_WAIT_TIME);
+		//Wait for user input
+		printf("\nAppuyez sur Entrée pour continuer...\n");
+		#if defined(_WIN32) || defined(_CYGWIN)
+			system("pause");
+		#else
+			system("read");
+		#endif
+		
+		return showMainMenu();
+		break;
+	case 4:;
 		printf("\n\n");
 		printf("_|      _|  _|                        _|_|_|  _|      _|\n");
 		printf("_|_|  _|_|      _|_|_|      _|_|    _|          _|  _|    _|_|_|      _|_|    _|  _|_|\n");
@@ -173,7 +196,7 @@ int showMainMenu(){ //main menu of the game
 
 		return showMainMenu();
 		break;
-	case 4:;
+	case 5:;
 		colorPrintf("\nBye bye !\n",GREEN);
 		return 0;
 		break;

@@ -3,8 +3,11 @@
 #include<stdlib.h>
 #include<time.h>
 #include<stdbool.h>
+#include<unistd.h>
 
 #define RELEASE_VERSION "1.0-dev"
+
+#define TUTORIAL_WAIT_TIME 2
 
 //#define RESET_COLOR "\033[0m"
 #define RESET_COLOR 0
