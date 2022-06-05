@@ -53,30 +53,28 @@ void showBestTimes(char * fileName, int size){
 	fclose(file);
 }
 
-void saveAndShowTime(int timeOnBeginning, int endgameResult, char * fileName){
-	if(endgameResult == 1){
-		int timeResult = time(NULL) - timeOnBeginning;
-		char *timeString = timeToClock(time(NULL) - timeOnBeginning);
-		printf("Your time : %s\n\n", timeString);
+void saveAndShowTime(int timeOnBeginning, char * fileName){
+	int timeResult = time(NULL) - timeOnBeginning;
+	char *timeString = timeToClock(time(NULL) - timeOnBeginning);
+	printf("Your time : %s\n\n", timeString);
 
-		// Ask for username, and replace the character ; with ,
-		char username[20];
-		printf("Please enter your username : ");
-		scanf("%19s", username);
-		for(int i = 0; i < strlen(username); i++){
-			if(username[i] == ';'){
-				username[i] = ',';
-			}
+	// Ask for username, and replace the character ; with ,
+	char username[20];
+	printf("Please enter your username : ");
+	scanf("%19s", username);
+	for(int i = 0; i < strlen(username); i++){
+		if(username[i] == ';'){
+			username[i] = ',';
 		}
-
-		FILE * file = fopen(fileName, "a");
-		fprintf(file, "%s;%d\n", username, timeResult);
-		fclose(file);
-
-		colorPrintf("\nFastest times :",RED);
-		showBestTimes(fileName, 5);
-		printf("\n");
 	}
+
+	FILE * file = fopen(fileName, "a");
+	fprintf(file, "%s;%d\n", username, timeResult);
+	fclose(file);
+
+	colorPrintf("\nFastest times :",RED);
+	showBestTimes(fileName, 5);
+	printf("\n");
 }
 
 bool doesFileExist(char * fileName){

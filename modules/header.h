@@ -29,12 +29,14 @@ int first_turn(int length, int height, Bloc** map, int mines);
 void map_print(int length, int height, Bloc** map);
 int reveal_bloc(int length, int height, Bloc** map, int abs, int ord, bool gameplay);
 int turn(int length, int height, Bloc** map, int flags);
-char * timeToClock(int seconds);
+char* timeToClock(int seconds);
+void full_reveal(int length, int height, Bloc** map);
+bool winning(int length, int height, Bloc** map);
 
 //Time saving system
 int min(int a, int b);
 void showBestTimes(char * fileName, int size);
-void saveAndShowTime(int timeOnBeginning, int endgameResult, char * fileName);
+void saveAndShowTime(int timeOnBeginning, char * fileName);
 bool doesFileExist(char * fileName);
 #define NORMAL_DIFFICULTY_SAVEDATA_LOCATION "normalDifficultyData.txt"
 #define HARD_DIFFICULTY_SAVEDATA_LOCATION "hardDifficultyData.txt"

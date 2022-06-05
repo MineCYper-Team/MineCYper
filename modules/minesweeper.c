@@ -98,22 +98,28 @@ int showMainMenu(){ //main menu of the game
 			map[i] = malloc(length * sizeof(Bloc));
 		}
 		timeOnBeginning = time(NULL);
-		endgameResult = first_turn(length, height, map, mines);
-		switch (gamemode){
-		case 0: ;
-			saveAndShowTime(timeOnBeginning, endgameResult, NORMAL_DIFFICULTY_SAVEDATA_LOCATION);
-			break;
-		case 1: ;
-			saveAndShowTime(timeOnBeginning, endgameResult, HARD_DIFFICULTY_SAVEDATA_LOCATION);
-			break;
-		case 2: ;
-			printf("Time : %d\n", timeOnBeginning);
-			colorPrintf("Note : this game is customized. Time will not be saved.\n", RED);
-			break;
-		default: ;
-			colorPrintf("Error : Wasn't able to save. Going back to the menu.\n\n",RED);
+		int victory = first_turn(length, height, map, mines);
+		if(victory==-1){
+			colorPrintf("Error : This shouldn't happen. Going back to the menu.\n\n",RED);
 			return showMainMenu();
-			break;
+		}
+		else if(victory){
+			switch (gamemode){
+			case 0: ;
+				saveAndShowTime(timeOnBeginning, NORMAL_DIFFICULTY_SAVEDATA_LOCATION);
+				break;
+			case 1: ;
+				saveAndShowTime(timeOnBeginning, HARD_DIFFICULTY_SAVEDATA_LOCATION);
+				break;
+			case 2: ;
+				printf("Time : %d\n", timeOnBeginning);
+				colorPrintf("Note : this game is customized. Time will not be saved.\n", RED);
+				break;
+			default: ;
+				colorPrintf("Error : Wasn't able to save. Going back to the menu.\n\n",RED);
+				return showMainMenu();
+				break;
+			}
 		}
 		for(int i = 0; i<height; i++){
 			free(map[i]);
@@ -138,7 +144,6 @@ int showMainMenu(){ //main menu of the game
 			showBestTimes(HARD_DIFFICULTY_SAVEDATA_LOCATION, 5);
 		}
 		printf("\n");
-
 		return showMainMenu();
 		break;
 	case 3:;
@@ -194,15 +199,14 @@ int main(){
 	#endif
 
 	//Print MineCYper Logo
-	printf("\n\n");
-	printf("_|      _|  _|                        _|_|_|  _|      _|\n");
-	printf("_|_|  _|_|      _|_|_|      _|_|    _|          _|  _|    _|_|_|      _|_|    _|  _|_|\n");
-	printf("_|  _|  _|  _|  _|    _|  _|_|_|_|  _|            _|      _|    _|  _|_|_|_|  _|_|\n");
-	printf("_|      _|  _|  _|    _|  _|        _|            _|      _|    _|  _|        _|\n");
-	printf("_|      _|  _|  _|    _|    _|_|_|    _|_|_|      _|      _|_|_|      _|_|_|  _|\n");
-	printf("							  _|\n");
-	printf("							  _|\n");
-	printf("\n");
+	printf("\n\n        ___  ____             ______   __\n");								//___  ____             ______   __
+	printf("        |  \\/  (_)           / __ \\ \\ / /\n");									//|  \/  (_)           / __ \ \ / /
+	printf("        | .  . |_ _ __   ___| /  \\/\\ V / __   _____ ___\n");		//| .  . |_ _ __   ___| /  \/\ V / __   _____ ___
+	printf("        | |\\/| | | '_ \\ / _ | |     \\ / '_ \\ / _ \\ '__|\n");	//| |\/| | | '_ \ / _ | |     \ / '_ \ / _ \ '__|
+	printf("        | |  | | | | | |  __| \\__/\\ | | |_) |  __/ V\n");				//| |  | | | | | |  __| \__/\ | | |_) |  __/ V
+	printf("        |_|  |_|_|_| |_|\\___|\\____/ |_| .__/ \\___|_|\n");			//|_|  |_|_|_| |_|\___|\____/ |_| .__/ \___|_|
+	printf("                                      | |\n");										//                              | |
+	printf("                                      |_|\n\n");										//                              |_|
 
 	return showMainMenu();
 }
