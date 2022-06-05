@@ -2,7 +2,7 @@
 
 ---
 
-# MineCYper : The "Ultimate" Minesweeper*
+# MineCYper
 
 ![License](https://img.shields.io/github/license/MineCYper-Team/MineCYper?color=green)
 ![Top language](https://img.shields.io/github/languages/top/MineCYper-Team/MineCYper?color=green)
@@ -11,8 +11,8 @@
 
 Minesweeper in C, powered by your terminal. Made for the final computing project of CY Tech's Pré-ING1 year.
 
-## I want to play this game straight from source ! What do I do ?
-First things first, open a terminal. Oh and do that on Linux. There was no budget for Windows compatibility. *(There was no budget at all.)*
+## How do I play this game ?
+First things first, open a terminal on a Linux distribution. Sorry, there was no budget for Windows compatibility. *(There was no budget at all.)*
 
 Next, you'd want to use *git* to clone this repository.
 ```bash
@@ -26,7 +26,7 @@ Make sure you have *make* and *gcc*. Then run :
 ```bash
 make run_release
 ```
-to compile and immediately run it.
+to compile and immediately play MineCYper.
 
 *There are other options present in the Makefile to accomodate your needs.*
 
@@ -53,7 +53,3 @@ Use the in-game tutorial, and if it's not enough, you can rely on [this French w
 | Can display fastest times | ✓ |
 | Allows custom games | ✓ |
 | In-game tutorial | ✓ |
-
----
-
-*\*it is in the fact the ultimate Minesweeper if you remove literally every other option*
