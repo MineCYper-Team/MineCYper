@@ -56,5 +56,11 @@ int first_turn(int length, int height, Bloc** map, int mines){
   printf("Square selected: %c%d\n\n", abs+'A', ord+1);
   map_init(length, height, map, mines, abs, ord);
   reveal_bloc(length, height, map, abs, ord, true);
+  if(winning(length, height, map)){
+    full_reveal(length, height, map);
+    map_print(length, height, map);
+    colorPrintf("\nYOU WON TURN 1, SOMEHOW\n",YELLOW);
+    return 1;
+  }
   return turn(length, height, map, mines);
 }

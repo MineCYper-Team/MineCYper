@@ -67,8 +67,11 @@ void full_reveal(int length, int height, Bloc** map){
 }
 
 int turn(int length, int height, Bloc** map, int flags){
-  printf("Flags left: %d\n", flags);
+  printf("\nFlags left: %d\n", flags);
   map_print(length, height, map);
+  if(flags<0){
+    colorPrintf("\n/!\\ You have less than 0 flags! You probably made an error somewhere!\n",RED);
+  }
   while(getchar()!='\n'); //flush
   int abs;
 	int ord;
